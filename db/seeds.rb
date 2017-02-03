@@ -11,7 +11,7 @@
     name: Faker::Name.name,
     email: Faker::Internet.email
     }
-  User.create(user_info)
+  User.create!(user_info)
 end
 
 5.times do
@@ -19,24 +19,26 @@ end
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude
     }
-  Location.create(location_info)
-end
-
-5.times do
-  soundtrek_info = {
-    description: Faker::Hipster.sentences(1),
-    location_id: (1..5).to_a.sample,
-    playlist_id: (1..5).to_a.sample,
-    }
-  SoundTrek.create(soundtrek_info)
+  Location.create!(location_info)
 end
 
 5.times do
   playlist_info = {
-    title: Faker::Beer.name,
+    title: Faker::Lorem.words(3),
     creator_id: (1..5).to_a.sample,
     spotify_id: (1..5).to_a.sample,
     }
-  Playlist.create(playlist_info)
+  Playlist.create!(playlist_info)
 end
+
+5.times do
+  soundtrek_info = {
+    description: Faker::Lorem.sentence(1),
+    location_id: (1..5).to_a.sample,
+    playlist_id: (1..5).to_a.sample,
+    }
+  SoundTrek.create!(soundtrek_info)
+end
+
+
 

@@ -3,5 +3,4 @@ class SoundTrek < ApplicationRecord
 
   belongs_to :playlist
   belongs_to :location
-
 end
