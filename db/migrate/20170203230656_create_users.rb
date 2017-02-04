@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :provider
       t.string :uid
       t.string :name
+      t.string :spotify_id
 
       t.timestamps
     end

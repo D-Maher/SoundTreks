@@ -8,4 +8,10 @@ Rails.application.routes.draw do
 
   delete 'sign_out', to: "sessions#destroy", as: 'sign_out'
 
+  resources :users
+  resources :playlists, only: [:new, :create]
+  resources :soundtreks
+
+  get 'playlists/create'
+
 end
