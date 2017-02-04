@@ -2,6 +2,6 @@ default: &default
   adapter: postgresql
 test:
   <<: *default
-  database: mydb_test
+  database: SoundTreks_test
   username: travis
   encoding: utf8
