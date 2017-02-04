@@ -204,6 +204,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  dotenv
   faker
   figaro
   jbuilder (~> 2.5)

@@ -3,6 +3,13 @@
   <head>
     <title>SoundTreks</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK4VL675cMD7qW4LI-GPS9L25_9cYqYto&callback=initMap">
+    </script>
+
+    <script src="/assets/javascripts/maps.js"></script>
+
+
 
     <%= csrf_meta_tags %>
 
@@ -20,6 +27,7 @@
   </head>
 
   <body>
+
     <h2 align="center">SoundTreks</h2>
 
 
@@ -36,11 +44,17 @@
         <% end %>
       </ul>
 
-      <div class="playlist">
-  <div class="loader">
-    <div class="inner-circle"></div>
-  </div>
-</div>
+
+    <div class="playlist">
+      <div class="loader">
+        <div class="inner-circle"></div>
+      </div>
+    </div>
+
+    <div id="nav-bar" class='nav'></div>
+
+
+
     <%= yield %>
   </body>
 </html>
