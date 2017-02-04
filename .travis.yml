@@ -1,5 +1,12 @@
 language: ruby
 rvm:
   - "2.2.3"
-
-# script: ruby test/model/user_test.rb
+env:
+  - DB=postgresql
+script:
+  - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+  - bundle exec rspec spec/
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database SoundTreks_test;' -U postgres
+bundler_args: --binstubs=./bundler_stubs
