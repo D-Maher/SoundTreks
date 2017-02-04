@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SoundTrekTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+ def test_model
+  sound_trek = Sound
+ end
 end
