@@ -1,7 +1,9 @@
 class PlaylistsController < ApplicationController
 
-
   def create
+  end
+
+  def show
     RSpotify.authenticate('3cea8c83afda4f36b9620dd9591632b1', 'b87a70cbbd5744a286af6c8b36fc733c')
     user = User.find_by(:id => session[:user_id])
     p "SESSION!!!"
