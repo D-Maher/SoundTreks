@@ -11,9 +11,11 @@ function initMap(location) {
     zoom: 15
   });
 
-  map.addListener("click", function(event) {
-    placeSoundTrek(event.latLng, map);
-  })
+
+
+  // map.addListener("click", function(event) {
+  //   placeSoundTrek(event.latLng, map);
+  // })
 
   console.log("GEOPOSITION:")
   console.log(location);
@@ -38,12 +40,43 @@ var options = {
   maximumAge: 0
 };
 
-function placeSoundTrek(latLng, map) {
+function createSoundTrek(latLng, map) {
   var marker = new google.maps.Marker({
     position: latLng,
     map: map
   });
 }
+
+function placeSoundTrek() {
+
+}
+
+$('button').on("click", function(event) {
+  event.preventDefault();
+
+  $.ajax({
+// create a location
+    url: '/locations',
+    type: 'POST',
+    data: {param1: 'value1'},
+  })
+  .done(function() {
+    console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+
+
+
+})
+// when a user clicks button to make a soundtrek, a Location object is created and associated with that user id. Then the user is taken to a form to make a new Soundtrek object
+
+// function to take us to make soundtrek page when button clicked
+//
 
 
 // function handleLocationError(browserHasGeoLocation, infoWindow, currentPosition) {
