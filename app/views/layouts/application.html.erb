@@ -20,18 +20,19 @@
   </head>
 
   <body>
-    <div id="nav-bar" class='nav'>
+    <h2 align="center">SoundTreks</h2>
 
-      <ul class="nav navbar-nav navbar-right">
+      <ul>
         <% if current_user %>
           <li>Signed in as: <%= current_user.name %></li>
           <li><%= link_to "Sign Out", 'sign_out', method: :delete %></li>
         <% else %>
-          <li><%= link_to "Log In", "auth/spotify" %></li>
+          <h3>Login</h3>
+          <li><%= link_to image_tag('spotify.png', width: '', height: '100') , "auth/spotify" %></li>
         <% end %>
       </ul>
 
-    </div>
+
     <%= yield %>
   </body>
 </html>
