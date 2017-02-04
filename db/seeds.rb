@@ -25,7 +25,7 @@ end
 
 5.times do
   playlist_info = {
-    title: Faker::Lorem.words(3),
+    title: Faker::Lorem.word,
     creator_id: (1..5).to_a.sample,
     spotify_id: (1..5).to_a.sample,
     }
