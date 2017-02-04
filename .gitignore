@@ -20,3 +20,4 @@
 .env
 .DS_Store
 .DS_Store?
+secrets.yml
