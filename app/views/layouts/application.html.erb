@@ -8,10 +8,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <body>
     <div id="nav-bar" class='nav'>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li>Signed in as: <%= current_user.name %></li>
+          <li><%= link_to "Sign Out", 'sign_out', method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Log In", "auth/spotify" %></li>
+        <% end %>
+      </ul>
 
     </div>
     <%= yield %>
