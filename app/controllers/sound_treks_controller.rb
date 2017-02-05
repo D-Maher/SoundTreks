@@ -10,8 +10,15 @@ class SoundTreksController < ApplicationController
     @sound_trek = SoundTrek.new
   end
 
-  # def edit
-  # end
+  def edit
+    # add helper method for seeing if a user is owner
+    # @sound_trek = SoundTrek.find(params[:id])
+    # if sound_trek_owner?(@sound_trek)
+
+    # else
+    #   render file: 'public/404.html'
+    # end
+  end
 
   def create
     @sound_trek = SoundTrek.new(sound_trek_params)
@@ -23,8 +30,15 @@ class SoundTreksController < ApplicationController
     end
   end
 
-  # def update
-  # end
+  def update
+    @sound_trek = SoundTrek.find(params[:id])
+     if @sound_trek.update(sound_trek_params)
+      redirect_to @sound_trek
+    else
+      render 'edit'
+    end
+  end
+
 
   # def destroy
   # end
