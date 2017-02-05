@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
 $(document).ready(function(){
   $("#get-playlists").on("click", function(){
     event.preventDefault();
@@ -33,3 +34,13 @@ $(document).ready(function(){
   }
 
 })
+
+
+$(function() {
+
+  centerMapOnCurrentLocation();
+
+  placeSoundTrek();
+
+});
+
