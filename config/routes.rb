@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 root 'sound_treks#index'
 
-
 get 'session/index'
-
 
 resources :locations do
   resources :sound_treks
