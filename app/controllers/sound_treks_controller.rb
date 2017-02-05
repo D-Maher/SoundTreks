@@ -3,17 +3,20 @@ class SoundTreksController < ApplicationController
   end
 
   def new
-    @sound_trek = SoundTrek.new(sound_trek_params)
+    @sound_trek = SoundTrek.new
   end
 
   def create
-    if request.xhr?
-      if @sound_trek.save
-        redirect_to location_sound_trek_path(@location, @sound_trek)
-      else
-        status 422
-      end
+    @sound_trek = SoundTrek.new(sound_trek_params)
+    if @sound_trek.save
+      redirect_to @sound_trek
+    else
+      @errors = @sound_trek.errors.full_messages
+      render "new"
     end
+  end
+
+  def show
   end
 
   private
