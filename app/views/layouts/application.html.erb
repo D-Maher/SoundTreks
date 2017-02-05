@@ -33,7 +33,7 @@
 
       <ul>
         <% if current_user %>
-          <li>Signed in as: <%= current_user.name %></li>
+          <li>Signed in as <%= current_user.uid %></li>
           <li><%= link_to "Sign Out", 'sign_out', method: :delete %></li>
         <% else %>
           <h3>Login</h3>

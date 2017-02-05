@@ -1,3 +1,13 @@
-<h1>Your SoundTrek</h1>
+<h1><%= @sound_trek.title %></h1>
 
 <div id="no_access"><%= flash[:no_access] %></div><br>
+
+<h2>Description</h2><br>
+<div><%= @sound_trek.description %></div>
+
+<% if sound_trek_owner?(@sound_trek) %>
+  <%= link_to "Edit", edit_location_sound_trek_path(@sound_trek.location_id, @sound_trek.id) %><br>
+  <%= link_to 'Delete', location_sound_trek_pathedit_location_sound_trek_path(@sound_trek.location_id, @sound_trek.id),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+<% end %>
