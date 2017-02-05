@@ -27,7 +27,7 @@ end
   playlist_info = {
     title: Faker::Lorem.word,
     creator_id: (1..5).to_a.sample,
-    spotify_id: (1..5).to_a.sample,
+    spotify_id: Faker::Lorem.word,
     }
   Playlist.create!(playlist_info)
 end
@@ -35,6 +35,7 @@ end
 5.times do
   soundtrek_info = {
     description: Faker::Lorem.sentence(1),
+    title: Faker::Lorem.word,
     location_id: (1..5).to_a.sample,
     playlist_id: (1..5).to_a.sample,
     }
