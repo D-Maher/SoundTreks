@@ -57,9 +57,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-# Gems to look at
+# OmniAuth Gems
 gem 'omniauth'
 gem 'omniauth-spotify'
+
+# Spotify API gem
+gem 'rspotify'
 
 ruby "2.2.3"
 

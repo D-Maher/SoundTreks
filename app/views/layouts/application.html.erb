@@ -22,6 +22,10 @@
   <body>
     <h2 align="center">SoundTreks</h2>
 
+
+      <button id="get-playlists">Find Playlists!</button>
+
+
       <ul>
         <% if current_user %>
           <li>Signed in as: <%= current_user.name %></li>
@@ -32,7 +36,11 @@
         <% end %>
       </ul>
 
-
+      <div class="playlist">
+  <div class="loader">
+    <div class="inner-circle"></div>
+  </div>
+</div>
     <%= yield %>
   </body>
 </html>
