@@ -25,13 +25,14 @@ ActiveRecord::Schema.define(version: 20170203230852) do
   create_table "playlists", force: :cascade do |t|
     t.string   "title",      null: false
     t.integer  "creator_id", null: false
-    t.integer  "spotify_id"
+    t.string   "spotify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "sound_treks", force: :cascade do |t|
     t.text     "description"
+    t.string   "title",                     null: false
     t.integer  "location_id",               null: false
     t.integer  "playlist_id",               null: false
     t.float    "radius",      default: 5.0
