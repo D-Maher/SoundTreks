@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
 resources :users, only:[:show]
 
-resources :locations do
+resources :locations, except: [:new] do
   resources :sound_treks
 end
 

@@ -40,5 +40,7 @@ $(function() {
 
   centerMapOnCurrentLocation();
 
+  placeSoundTrek();
+
 });
 
