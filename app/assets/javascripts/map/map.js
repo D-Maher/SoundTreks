@@ -54,28 +54,9 @@ var options = {
   maximumAge: 0
 };
 
-function createSoundTrek(latLng, map) {
-  var marker = new google.maps.Marker({
-    position: latLng,
-    map: map
-  });
-}
-
 function placeSoundTrek() {
   $('#create-sound-trek').on("click", function(event) {
     event.preventDefault();
     getLocation();
   })
 }
-// when a user clicks button to make a soundtrek, a Location object is created and associated with that user id. Then the user is taken to a form to make a new Soundtrek object
-
-// function to take us to make soundtrek page when button clicked
-//
-
-
-// function handleLocationError(browserHasGeoLocation, infoWindow, currentPosition) {
-//   infoWindow.setPosition(currentPosition);
-//   infoWindow.setContent(browserHasGeoLocation ?
-//                           "Error: The Geolocation service failed." :
-//                           "Error: Your browser does not support geolocation.")
-// }
