@@ -1,11 +1,11 @@
-<h1>Welcome, <%= @user.name %>!</h1>
+<h1>Welcome, <%= @user.uid %>!</h1>
 
 <h2>Your SoundTreks:</h2>
 
 <div>
 <ul>
   <% @user.sound_treks.each do |sound_trek|%>
-  <li><%= link_to sound_trek.description, sound_trek_path(sound_trek) %></li>
+  <li><%= link_to sound_trek.title, sound_trek_path(sound_trek) %></li>
   <% end %>
 </ul>
 </div>
