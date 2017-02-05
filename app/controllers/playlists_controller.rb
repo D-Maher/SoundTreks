@@ -4,6 +4,7 @@ class PlaylistsController < ApplicationController
   end
 
   def show
+
     RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
     user = User.find_by(:id => session[:user_id])
     spotify_user = RSpotify::User.find(user.spotify_id)
@@ -12,14 +13,8 @@ class PlaylistsController < ApplicationController
     respond_to do |format|
       format.json { render layout: false, json: {:base_url => base_url }}
     end
-  end
-
-
-
-  private
-
-  def get_playlists(user_id)
 
   end
+
 end
 
