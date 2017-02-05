@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Playlist do
-  let (:playlist) {Playlist.new(title: "Nature Hike", creator_id: 1, spotify_id: 2)}
+  let (:playlist) {Playlist.new(title: "Nature Hike", creator_id: 1, spotify_id: "dasfsad")}
 
   it "has a title" do
     expect(playlist.title).to eq "Nature Hike"
@@ -12,7 +12,7 @@ describe Playlist do
   end
 
   it "has a spotify_id" do
-    expect(playlist.spotify_id).to eq 2
+    expect(playlist.spotify_id).to eq "dasfsad"
   end
 
   it "will raise validation errors without creator_id" do

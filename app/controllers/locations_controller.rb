@@ -6,8 +6,10 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if request.xhr?
+      @sound_trek = SoundTrek.new
       if @location.save
-        redirect_to new_location_sound_trek_path(@location)
+        render "/sound_treks/new", layout: false
+        # redirect_to new_location_sound_trek_path(@location)
       else
         status 422
       end

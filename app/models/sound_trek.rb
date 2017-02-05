@@ -1,5 +1,6 @@
 class SoundTrek < ApplicationRecord
-  validates :playlist_id, :location_id, presence: true
+  validates :location_id, presence: true
+# before_save :playlist_id
 
   belongs_to :playlist
   belongs_to :location
