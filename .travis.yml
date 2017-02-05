@@ -3,7 +3,6 @@ rvm:
   - "2.2.3"
 env:
   - DB=postgresql
-  - secret_key_base=44c9fa38e1e81017ad1b5af37671c31f90c325b9ffcb54e643db9a44ca63140a861f53f4ab621819c3affdc6ad4f48c6f8b6ce5e3fcaf7a6bb8591e9e0037b41
 script:
   - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
   - bundle exec rspec spec/
