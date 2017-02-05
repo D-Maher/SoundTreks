@@ -11,7 +11,7 @@ RSpec.describe SoundTreksController, type: :controller do
 
   describe "GET #edit" do
     it "responds with status code 200" do
-      get :edit, params: { id: soundtrek.id }
+      get :edit, params: { id: soundtrek.id, location_id: soundtrek.location_id}
       expect(response).to have_http_status 200
     end
   end
