@@ -2,15 +2,10 @@ class SoundTreksController < ApplicationController
   include SoundTreksHelper
 
   def index
-
   end
 
   def show
     @sound_trek = SoundTrek.find(params[:id])
-  end
-
-  def new
-    # @sound_trek = SoundTrek.new
   end
 
   def edit
