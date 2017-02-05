@@ -2,9 +2,16 @@ class SoundTreksController < ApplicationController
   def index
   end
 
+  def show
+    @sound_trek = SoundTrek.find(params[:id])
+  end
+
   def new
     @sound_trek = SoundTrek.new
   end
+
+  # def edit
+  # end
 
   def create
     @sound_trek = SoundTrek.new(sound_trek_params)
@@ -16,9 +23,12 @@ class SoundTreksController < ApplicationController
     end
   end
 
-  def show
-    @sound_trek = SoundTrek.find(params[:id])
-  end
+  # def update
+  # end
+
+  # def destroy
+  # end
+
 
   private
   def sound_trek_params
