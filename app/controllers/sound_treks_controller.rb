@@ -1,4 +1,6 @@
 class SoundTreksController < ApplicationController
+  include SoundTreksHelper
+
   def index
   end
 
@@ -11,12 +13,12 @@ class SoundTreksController < ApplicationController
   end
 
   def edit
-    # add helper method for seeing if a user is owner
     # @sound_trek = SoundTrek.find(params[:id])
     # if sound_trek_owner?(@sound_trek)
 
     # else
-    #   render file: 'public/404.html'
+      # flash[:no_access] = "You do not have permission to edit this SoundTrek."        redirect_to @recipe
+      # redirect_to @sound_trek
     # end
   end
 

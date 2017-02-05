@@ -1,17 +1,9 @@
 <h1>Edit SoundTrek</h1>
 
   <% if @sound_trek.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@sound_trek.errors.count, "error") %> prohibited
-        this SoundTrek from being saved:
-      </h2>
-      <ul>
-        <% @sound_trek.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <% @sound_trek.errors.full_messages.each do |error| %>
+    <li class='error'><%= error %></li>
+    <% end %>
   <% end %>
 
 
