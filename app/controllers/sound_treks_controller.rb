@@ -17,10 +17,11 @@ class SoundTreksController < ApplicationController
   end
 
   def show
+    @sound_trek = SoundTrek.find(params[:id])
   end
 
   private
   def sound_trek_params
-    params.require(:sound_trek).permit(:description, :location_id, :playlist_id)
+    params.require(:sound_trek).permit(:description, :title, :location_id, :playlist_id)
   end
 end
