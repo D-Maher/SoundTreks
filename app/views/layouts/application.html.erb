@@ -26,21 +26,20 @@
   <body>
 
     <h2 align="center">SoundTreks</h2>
-
+      <div class="nav-bar">
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+          <% if current_user %>
+            <li><%= link_to current_user.uid, user_path(current_user.id) %></li>
+            <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
+          <% else %>
+            <h3>Login</h3>
+            <%= link_to image_tag('spotify.png', width: '', height: '100') , "auth/spotify" %>
+          <% end %>
+        </ul>
+      </div>
 
       <button id="get-playlists">Find Playlists!</button>
-
-
-      <ul>
-        <% if current_user %>
-          <li>Signed in as <%= current_user.uid %></li>
-          <li><%= link_to "Sign Out", 'sign_out', method: :delete %></li>
-        <% else %>
-          <h3>Login</h3>
-          <%= link_to image_tag('spotify.png', width: '', height: '100') , "auth/spotify" %>
-        <% end %>
-      </ul>
-
 
     <div class="playlist">
       <div class="loader">
@@ -48,7 +47,6 @@
       </div>
     </div>
 
-    <div id="nav-bar" class='nav'></div>
 
     <%= yield %>
   </body>

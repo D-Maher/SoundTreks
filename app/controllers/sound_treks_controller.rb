@@ -2,6 +2,7 @@ class SoundTreksController < ApplicationController
   include SoundTreksHelper
 
   def index
+
   end
 
   def show
