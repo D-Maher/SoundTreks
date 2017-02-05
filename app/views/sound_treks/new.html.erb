@@ -9,7 +9,8 @@
 <% end %>
 
 <%= form_for [@sound_trek], url: {action: "create"} do |f| %>
-  <%= f.label :description %><br>
+<!-- Create field for soundtrek title
+ -->  <%= f.label :description %><br>
   <%= f.text_area :description %><br>
   <%= f.hidden_field :location_id, :value => params[:location_id] %>
   <!-- Need to remove hidden_field for playlist_id -->
