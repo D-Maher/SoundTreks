@@ -7,7 +7,10 @@ function centerMapOnCurrentLocation() {
 
 // remember to handle errors
 function getLocation() {
-  navigator.geolocation.getCurrentPosition(successPosition, error, options)
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(successPosition, error, options)
+  }
 }
 
 function successPosition(position) { // success
@@ -57,7 +60,7 @@ function createSoundTrek(latLng, map) {
 }
 
 function placeSoundTrek() {
-  $('#place-sound-trek').on("click", function(event) {
+  $('#create-sound-trek').on("click", function(event) {
     event.preventDefault();
     getLocation();
   })

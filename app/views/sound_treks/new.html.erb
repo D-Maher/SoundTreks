@@ -1,0 +1,8 @@
+<h1>Create A New SoundTrek</h1>
+
+<%= form_for location_sound_treks_path([@location, @sound_trek]) do |f| %>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %><br>
+  <!-- Add Playlist -->
+  <%= f.submit "Create" %>
+<% end %>
