@@ -1,0 +1,11 @@
+<h1>Welcome, <%= @user.name %>!</h1>
+
+<h2>Your SoundTreks:</h2>
+
+<div>
+<ul>
+  <% @user.sound_treks.each do |sound_trek|%>
+  <li><%= sound_trek.description%></li>
+  <% end %>
+</ul>
+</div>
