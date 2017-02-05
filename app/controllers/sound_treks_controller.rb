@@ -14,7 +14,11 @@ class SoundTreksController < ApplicationController
   end
 
   def edit
+    # Fix this shit
     @sound_trek = SoundTrek.find(params[:id])
+    if sound_trek_owner?(@sound_trek)
+      @sound_trek
+    end
   end
 
   def create
@@ -29,6 +33,7 @@ class SoundTreksController < ApplicationController
 
   def update
     @sound_trek = SoundTrek.find(params[:id])
+    if sound_trek_owner?(@sound_trek)
      if @sound_trek.update(sound_trek_params)
       redirect_to @sound_trek
     else
@@ -40,13 +45,21 @@ class SoundTreksController < ApplicationController
     # else
       # flash[:no_access] = "You do not have permission to edit this SoundTrek."        redirect_to @recipe
       # redirect_to @sound_trek
-    # end
+    end
   end
 
 
-  # def destroy
-  # end
+  def destroy
+    @sound_trek = SoundTrek.find(params[:id])
 
+    if sound_trek_owner?(@sound_trek)
+      @sound_trek.destroy
+      redirect_to user_path(session[:user_id])
+    else
+      flash[:no_access] = "You do not have permission to delete this SoundTrek."
+      redirect_to @sound_trek
+    end
+  end
 
   private
   def sound_trek_params
