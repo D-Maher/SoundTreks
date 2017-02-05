@@ -24,8 +24,10 @@ function successPosition(position) { // success
     type: 'POST',
     data: {location:{latitude: latitude, longitude: longitude}}
   })
-  .done(function() {
+  .done(function(response) {
     console.log("success");
+    $("#new-sound-trek-form").html(response);
+    // Don't forget to delete form from page on form submission
   })
   .fail(function() {
     console.log("error");
