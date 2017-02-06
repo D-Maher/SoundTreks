@@ -26,7 +26,7 @@ function successPosition(position) { // success
   })
   .done(function(response) {
     console.log("success");
-    $("#new-sound-trek-form").html(response);
+    $("#new-sound-trek-container").html(response);
     // Don't forget to delete form from page on form submission
   })
   .fail(function() {
@@ -54,9 +54,35 @@ var options = {
   maximumAge: 0
 };
 
-function placeSoundTrek() {
+function storeLocation() {
   $('#create-sound-trek').on("click", function(event) {
     event.preventDefault();
     getLocation();
+  })
+}
+
+function createSoundTrek() {
+  $('#new-sound-trek-container').on("submit", "#new-sound-trek-form", function(event) {
+    event.preventDefault();
+    formData = $(this).serialize();
+    action = $(this).attr('action');
+
+    $.ajax({
+      url: action,
+      type: 'POST',
+      data: formData,
+    })
+    .done(function() {
+      console.log("LOCO BUENNNOOOOOOOO!!!!");
+
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });
+
+
   })
 }

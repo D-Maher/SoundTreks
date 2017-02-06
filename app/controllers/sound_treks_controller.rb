@@ -3,7 +3,7 @@ class SoundTreksController < ApplicationController
 
   def index
   end
-  
+
   def show
     @sound_trek = SoundTrek.find(params[:id])
   end
@@ -19,8 +19,15 @@ class SoundTreksController < ApplicationController
   end
 
   def create
+    p "-" * 50
+    p "PARMESAN:"
+    p params
+    p "-" * 50
+
     @sound_trek = SoundTrek.new(sound_trek_params)
+    @sound_trek.assign_attribute(location_id: params[:location_id])
     if @sound_trek.save
+      p "WE DID IT!!!"
       redirect_to @sound_trek
     else
       @errors = @sound_trek.errors.full_messages
@@ -51,6 +58,6 @@ class SoundTreksController < ApplicationController
 
   private
   def sound_trek_params
-    params.require(:sound_trek).permit(:description, :title, :location_id, :playlist_id)
+    params.require(:sound_trek).permit(:description, :title, :location_id, :playlist)
   end
 end
