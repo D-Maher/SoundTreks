@@ -8,7 +8,7 @@ resources :locations do
 end
 
 resources :sound_treks, only: [:show] do
-  resources :ratings, only: [:create, :edit]
+  resources :ratings, only: [:create, :update]
 end
 
 get 'auth/:provider/callback', to: "sessions#create"

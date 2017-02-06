@@ -22,7 +22,6 @@ class SoundTreksController < ApplicationController
   def create
   @sound_trek = SoundTrek.new(sound_trek_params)
     if @sound_trek.save
-      p "NICE!"
       redirect_to @sound_trek
     else
       @errors = @sound_trek.errors.full_messages

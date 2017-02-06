@@ -2,6 +2,8 @@
 
 <div id="no_access"><%= flash[:no_access_delete] %></div><br>
 <div id="no_access"><%= flash[:no_access_edit] %></div><br>
+<div id="no_access"><%= flash[:rating_notice] %></div><br>
+<div id="no_access"><%= flash[:already_rated] %></div><br>
 
 <h2>Ratings</h2>
 <% if @sound_trek.num_of_ratings == 0 %>
@@ -25,9 +27,15 @@
 
 <div id="rate-soundtrek">
 <h4>Rate This SoundTrek</h4>
-  <%= form_for @rating, url: sound_trek_ratings_path(@sound_trek) do |f| %>
-
-  <p><%= f.select :stars, options_for_select([['1 star', 1.00], ['2 stars', 2.00], ['3 stars', 3.00], ['4 stars', 4.00], ['5 stars', 5.00]]) %></p><br>
-  <%= f.submit "Submit Rating" %>
+  <% if !already_rated?(@sound_trek) %>
+    <%= form_for @rating, url: sound_trek_ratings_path(@sound_trek) do |f| %>
+    <p><%= f.select :stars, options_for_select([['1 star', 1.00], ['2 stars', 2.00], ['3 stars', 3.00], ['4 stars', 4.00], ['5 stars', 5.00]]) %></p><br>
+    <%= f.submit "Submit Rating" %>
+    <% end %>
+  <% else %>
+     <%= form_for @rating, url: sound_trek_rating_path(@sound_trek), method: :put do |f| %>
+    <p><%= f.select :stars, options_for_select([['1 star', 1.00], ['2 stars', 2.00], ['3 stars', 3.00], ['4 stars', 4.00], ['5 stars', 5.00]]) %></p><br>
+    <%= f.submit "Submit Rating" %>
+    <% end %>
   <% end %>
 </div>
