@@ -83,6 +83,7 @@ function getLocations(map){
  $.ajax({
    url: '/locations',
    type: 'GET',
+   // data: current location
  })
  .done(function(response) {
     for (var i=0; i < response.length; i++){
