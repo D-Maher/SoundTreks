@@ -64,7 +64,15 @@ function storeLocation() {
 
 function getMarker(marker) {
   marker.addListener('click', function(){
-    console.log(marker);
+    var id = marker.soundtrekId
+    $.ajax({
+      url: '/sound_treks/' + id + '',
+      type: 'GET',
+      data: {soundtrekId: id}
+    })
+    .done(function(response){
+      $(".playlist").html("<iframe src=" + "" + response.base_url + " " + "width=300 height=380 frameborder=0></iframe>")
+    })
   })
 }
 
@@ -88,23 +96,5 @@ function getLocations(map){
     }
   });
 }
-// function getLocations(map){
-//  $.ajax({
-//    url: '/locations',
-//    type: 'GET',
-//  })
-//  .done(function(response) {
-//     for (var i=0; i < response.length; i++){
-//       var marker = new google.maps.Marker({
-//         position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
-//         map: map,
-//         soundtrekId: response[i].id
-//       })
-//     };
-//     var allMarkers = []
-//     allMarkers.push(marker)
-//     for (var i=0; i < allMarkers.length; i++){
-//       getMarker(allMarkers[i]);
-// });
-// }
+
 
