@@ -40,6 +40,7 @@ function successPosition(position) { // success
     // Don't forget to delete form from page on form submission
   })
   .fail(function() {
+    $("#new-sound-trek-container").html("<div id='not-logged-in'>You must be logged in to create a SoundTrek.<div>");
     console.log("error");
   })
   .always(function() {

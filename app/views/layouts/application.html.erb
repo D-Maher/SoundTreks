@@ -33,13 +33,11 @@
             <li><%= link_to current_user.uid, user_path(current_user.id) %></li>
             <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
           <% else %>
-            <h3>Login</h3>
-            <%= link_to image_tag('spotify.png', width: '', height: '100') , "/auth/spotify" %>
+            <h3>Login with Spotify</h3>
+            <%= link_to image_tag('spotify.png', width: '', height: '50') , "/auth/spotify" %>
           <% end %>
         </ul>
       </div>
-
-      <button id="get-playlists">Find Playlists!</button>
 
     <div class="playlist">
       <div class="loader">

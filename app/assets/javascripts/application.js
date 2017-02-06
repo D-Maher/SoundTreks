@@ -32,12 +32,9 @@ $(document).ready(function(){
       $(".playlist").html("<iframe src=" + "" + response.base_url + " " + "width=300 height=380 frameborder=0></iframe>")
     })
   }
-
 })
-
 
 $(function() {
   centerMapOnCurrentLocation();
   storeLocation();
 });
-
