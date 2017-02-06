@@ -5,6 +5,7 @@ class SoundTreksController < ApplicationController
   end
 
   def show
+    @rating = Rating.new
     @sound_trek = SoundTrek.find(params[:id])
   end
 
