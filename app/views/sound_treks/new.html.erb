@@ -15,5 +15,7 @@
   <%= f.text_area :description %><br><br>
   <%= f.label "Select a playlist:" %><br>
   <%= f.select(:playlist, options_from_collection_for_select(@playlists, 'id', 'name')) %><br><br>
+  <%= f.hidden_field :location_id, :value => @location.id %>
+  <%= f.hidden_field :trekker_id, :value => current_user.id %>
   <%= f.submit "Submit" %>
 <% end %>

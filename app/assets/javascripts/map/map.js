@@ -76,26 +76,3 @@ function getLocations(map){
     }
   });
 };
-
-function createSoundTrek() {
-  $('#new-sound-trek-container').on("submit", "#new-sound-trek-form", function(event) {
-    event.preventDefault();
-    formData = $(this).serialize();
-    action = $(this).attr('action');
-
-    $.ajax({
-      url: action,
-      type: 'POST',
-      data: formData,
-    })
-    .done(function() {
-       console.log("success");
-    })
-    .fail(function() {
-      console.log("error");
-    })
-    .always(function() {
-      console.log("complete");
-    });
-  })
-}
