@@ -5,8 +5,13 @@ class SoundTreksController < ApplicationController
   end
 
   def show
-    @rating = Rating.new
-    @sound_trek = SoundTrek.find(params[:id])
+    if logged_in?
+      @rating = Rating.new
+      @sound_trek = SoundTrek.find(params[:id])
+    else
+      flash[:no_show_access] = "You must be logged in to view SoundTreks."
+      redirect_to "/"
+    end
   end
 
   def edit
