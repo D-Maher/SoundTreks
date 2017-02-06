@@ -14,7 +14,6 @@ class RatingsController < ApplicationController
        render file: 'public/404.html'
       end
     else
-      flash[:already_rated] = "You have already rated this SoundTrek."
       redirect_to sound_trek_path(@sound_trek)
     end
   end
@@ -24,7 +23,10 @@ class RatingsController < ApplicationController
     if already_rated?(@sound_trek)
       @rating = Rating.find_by(trekker_id: session[:user_id])
       @rating.update_attributes(stars: rating_params[:stars])
+      flash[:update_rating] = "Your rating for this SoundTrek has been updated."
       redirect_to sound_trek_path(@sound_trek)
+    else
+      render file: 'public/404.html'
     end
   end
 

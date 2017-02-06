@@ -1,9 +1,9 @@
 <h1><%= @sound_trek.title %></h1>
 
-<div id="no_access"><%= flash[:no_access_delete] %></div><br>
-<div id="no_access"><%= flash[:no_access_edit] %></div><br>
-<div id="no_access"><%= flash[:rating_notice] %></div><br>
-<div id="no_access"><%= flash[:already_rated] %></div><br>
+<div class="show-soundtrek-flash-message"><%= flash[:no_access_delete] %></div><br>
+<div class="show-soundtrek-flash-message"><%= flash[:no_access_edit] %></div><br>
+<div class="show-soundtrek-flash-message"><%= flash[:rating_notice] %></div><br>
+<div class="show-soundtrek-flash-message"><%= flash[:update_rating] %></div><br>
 
 <h2>Ratings</h2>
 <% if @sound_trek.num_of_ratings == 0 %>
