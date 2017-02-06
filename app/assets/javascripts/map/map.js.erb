@@ -79,6 +79,20 @@ function storeLocation() {
   })
 }
 
+function getMarker(marker) {
+  marker.addListener('click', function(){
+    var id = marker.soundtrekId
+    $.ajax({
+      url: '/sound_treks/' + id + '',
+      type: 'GET',
+      data: {soundtrekId: id}
+    })
+    .done(function(response){
+      $(".playlist").html("<iframe src=" + "" + response.base_url + " " + "width=300 height=380 frameborder=0></iframe>")
+    })
+  })
+}
+
 function getLocations(map){
  $.ajax({
    url: '/locations',
@@ -86,16 +100,30 @@ function getLocations(map){
    // data: current location
  })
  .done(function(response) {
+    var allMarkers = [];
     for (var i=0; i < response.length; i++){
       var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
-      icon: soundTrekIcon,
-      map: map
-      })
-      console.log(marker.position);
+        position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+        icon: soundTrekIcon,
+        map: map,
+        soundtrekId: response[i].id
+      });
+       allMarkers.push(marker);
+    }
+    for (var x = 0; x < allMarkers.length; x++){
+      getMarker(allMarkers[x]);
     }
   });
-};
+}
+
+//       position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+//       icon: soundTrekIcon,
+//       map: map
+//       })
+//       console.log(marker.position);
+//     }
+//   });
+// };
 
 function createUserMarker(map, location) {
   var userMarker = new google.maps.Marker({
