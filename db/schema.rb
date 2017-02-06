@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203230852) do
+ActiveRecord::Schema.define(version: 20170206002115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170203230852) do
     t.text     "description"
     t.string   "title",                     null: false
     t.integer  "location_id",               null: false
-    t.integer  "playlist_id",               null: false
+    t.string   "playlist",                  null: false
     t.float    "radius",      default: 5.0
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
