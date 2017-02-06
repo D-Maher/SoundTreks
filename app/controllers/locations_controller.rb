@@ -15,10 +15,7 @@ class LocationsController < ApplicationController
     if request.xhr?
       @sound_trek = SoundTrek.new
       if @location.save
-        p "INSIDE LOCATIONS CONTROLLER, PLAYLISTS:"
-        p @playlists
         render "/sound_treks/new", layout: false
-        # redirect_to new_location_sound_trek_path(@location)
       else
         status 422
       end
