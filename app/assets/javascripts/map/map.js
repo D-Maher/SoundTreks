@@ -6,7 +6,7 @@ function centerMapOnCurrentLocation() {
 }
 
 // remember to handle errors
-function getLocation() {
+function getCurrentLocation() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successPosition, error, options)
@@ -42,6 +42,7 @@ function initMap(location) {
     center: {lat: location.coords.latitude, lng: location.coords.longitude},
     zoom: 15
   });
+  getLocations(map);
 }
 
 function error(err) {
@@ -57,12 +58,24 @@ var options = {
 function placeSoundTrek() {
   $('#create-sound-trek').on("click", function(event) {
     event.preventDefault();
-    getLocation();
+    getCurrentLocation();
   })
 }
 
-// callback for map initiation to query db for all locations
+function getLocations(map){
+ $.ajax({
+   url: '/locations',
+   type: 'GET',
+ })
+ .done(function(response) {
+    for (var i=0; i < response.length; i++){
+      var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+      map: map
+      })
+    }
+  });
+};
 
-var marker = new google.maps.Marker({
-  position: new google.maps.LatLng(response.lat, response.lng)
-})
+
+
