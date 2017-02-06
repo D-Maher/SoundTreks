@@ -8,13 +8,12 @@
   </ul>
 <% end %>
 
-<%= form_for [@sound_trek], url: {action: "create"} do |f| %>
+<%= form_for [@sound_trek], url: location_sound_treks_path(@location, @sound_trek), html: {id: "new-sound-trek-form"} do |f| %>
   <%= f.label :title %><br>
   <%= f.text_area :title %><br><br>
    <%= f.label :description %><br>
   <%= f.text_area :description %><br><br>
   <%= f.label "Select a playlist:" %><br>
   <%= f.select(:playlist, options_from_collection_for_select(@playlists, 'id', 'name')) %><br><br>
-  <%= f.hidden_field :location_id, :value => params[:location_id] %>
   <%= f.submit "Submit" %>
 <% end %>

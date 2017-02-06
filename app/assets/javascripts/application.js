@@ -37,6 +37,7 @@ $(document).ready(function(){
 
 $(function() {
   centerMapOnCurrentLocation();
-  placeSoundTrek();
+  storeLocation();
+  createSoundTrek();
 });
 
