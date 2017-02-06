@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-5.times do
+10.times do
   user_info = {
     provider: "spotify",
     uid: Faker::Lorem.word,
@@ -15,7 +15,7 @@
   User.create!(user_info)
 end
 
-5.times do
+10.times do
   location_info = {
     latitude: Faker::Address.latitude,
     longitude: Faker::Address.longitude
@@ -23,21 +23,12 @@ end
   Location.create!(location_info)
 end
 
-5.times do
-  playlist_info = {
-    title: Faker::Lorem.word,
-    creator_id: (1..5).to_a.sample,
-    spotify_id: Faker::Lorem.characters(10),
-    }
-  Playlist.create!(playlist_info)
-end
-
-5.times do
+10.times do
   soundtrek_info = {
     description: Faker::Lorem.sentence,
     title: Faker::Lorem.word,
     location_id: (1..5).to_a.sample,
-    playlist_id: (1..5).to_a.sample,
+    playlist: Faker::Lorem.word,
     }
   SoundTrek.create!(soundtrek_info)
 end
