@@ -1,13 +1,23 @@
 //DBC coordinates
 // var dbc = {lat: 41.8762180, lng: -87.6531470};
 
+var soundTrekIcon = {
+  url: "<%= asset_path('sound_trek_marker.png') %>",
+  scaledSize: new google.maps.Size(30, 30)
+}
+
+var userIcon = {
+  url: "<%= asset_path('user_marker.png') %>",
+  scaledSize: new google.maps.Size(15, 15),
+  anchor: new google.maps.Point(8, 7)
+}
+
 function centerMapOnCurrentLocation() {
   navigator.geolocation.getCurrentPosition(initMap, error, options)
 }
 
 // remember to handle errors
 function getCurrentLocation() {
-
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successPosition, error, options)
   }
@@ -42,6 +52,8 @@ function initMap(location) {
     center: {lat: location.coords.latitude, lng: location.coords.longitude},
     zoom: 15
   });
+  createUserMarker(map, location);
+  createUserRadius(map, location);
   getLocations(map);
 }
 
@@ -71,8 +83,32 @@ function getLocations(map){
     for (var i=0; i < response.length; i++){
       var marker = new google.maps.Marker({
       position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+      icon: soundTrekIcon,
       map: map
       })
+      console.log(marker.position);
     }
   });
 };
+
+function createUserMarker(map, location) {
+  var userMarker = new google.maps.Marker({
+    position: {lat: location.coords.latitude, lng: location.coords.longitude},
+    map: map,
+    icon: userIcon,
+    title: 'Current Location'
+  });
+}
+
+function createUserRadius(map, location) {
+  var userRadius = new google.maps.Circle({
+    map: map,
+    radius: 500, // could be made toggleable
+    center: {lat: location.coords.latitude, lng: location.coords.longitude},
+    strokeColor: '#1dbdd6',
+    strokeOpacity: 0.5,
+    strokeWeight: 0.5,
+    fillColor: '#1dbdd6',
+    fillOpacity: 0.15
+  })
+}

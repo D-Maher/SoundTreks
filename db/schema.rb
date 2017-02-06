@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20170206015417) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider",   null: false
-    t.string   "uid",        null: false
+    t.string   "provider"
+    t.string   "uid"
     t.string   "name"
-    t.string   "spotify_id", null: false
+    t.string   "spotify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
