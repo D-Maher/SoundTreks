@@ -34,7 +34,7 @@
             <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
           <% else %>
             <h3>Login</h3>
-            <%= link_to image_tag('spotify.png', width: '', height: '100') , "auth/spotify/callback" %>
+            <%= link_to image_tag('spotify.png', width: '', height: '100') , "/auth/spotify" %>
           <% end %>
         </ul>
       </div>
