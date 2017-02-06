@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require_tree ../../../vendor/assets/javascripts/
 //= require_tree .
 
 $(document).ready(function(){
@@ -31,12 +32,10 @@ $(document).ready(function(){
       $(".playlist").html("<iframe src=" + "" + response.base_url + " " + "width=300 height=380 frameborder=0></iframe>")
     })
   }
-
 })
-
 
 $(function() {
   centerMapOnCurrentLocation();
   storeLocation();
+  removeForm();
 });
-

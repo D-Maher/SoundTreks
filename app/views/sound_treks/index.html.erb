@@ -5,5 +5,21 @@
   <%= link_to "<button>Create SoundTrek</button>".html_safe, "locations#create", id: "create-sound-trek"  %>
 </div>
 
+<div class="show-soundtrek-flash-message"><%= flash[:no_show_access] %></div><br>
+
+<h1>SoundTreks</h1>
+
+<div id="map"></div>
+
+<div class="show-soundtrek-flash-message"><%= flash[:no_access_create] %></div><br>
+
+<% if logged_in? %>
+  <div>
+    <div id="geolocate-errors" "create-soundtrek-button" class="errors"></div>
+    <%= link_to "Create SoundTrek", "locations#create", id: "create-sound-trek"  %>
+  </div>
+<% end %>
+
 <div id="new-sound-trek-container">
 </div>
+

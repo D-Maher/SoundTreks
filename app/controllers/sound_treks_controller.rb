@@ -15,12 +15,18 @@ class SoundTreksController < ApplicationController
         format.json { render layout: false, json: {:base_url => base_url }}
       end
     else
-      @sound_trek = SoundTrek.find(params[:id])
-      RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
-      @creator = @sound_trek.trekker
-      @playlist = RSpotify::Playlist.find(@creator.spotify_id, @sound_trek.playlist)
-      base_url = "https://embed.spotify.com/?uri=spotify:user:#{@creator.spotify_id}  :playlist:#{@playlist.id}"
-      @sound_trek
+      if logged_in?
+        @rating = Rating.new
+        @sound_trek = SoundTrek.find(params[:id])
+        RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+        @creator = @sound_trek.trekker
+        @playlist = RSpotify::Playlist.find(@creator.spotify_id, @sound_trek.playlist)
+        base_url = "https://embed.spotify.com/?uri=spotify:user:#{@creator.spotify_id}  :playlist:#{@playlist.id}"
+        @sound_trek
+      else
+        flash[:no_show_access] = "You must be logged in to view SoundTreks."
+        redirect_to "/"
+      end
     end
   end
 
@@ -35,13 +41,17 @@ class SoundTreksController < ApplicationController
   end
 
   def create
-  @sound_trek = SoundTrek.new(sound_trek_params)
-    if @sound_trek.save
-      p "NICE!"
-      redirect_to @sound_trek
+    if logged_in?
+      @sound_trek = SoundTrek.new(sound_trek_params)
+      if @sound_trek.save
+        redirect_to @sound_trek
+      else
+        @errors = @sound_trek.errors.full_messages
+        render "new"
+      end
     else
-      @errors = @sound_trek.errors.full_messages
-      render "new"
+      flash[:no_access_create] = "You must be logged in to create a SoundTrek."
+      redirect_to "/"
     end
   end
 
