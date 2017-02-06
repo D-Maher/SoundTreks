@@ -20,6 +20,12 @@ class RatingsController < ApplicationController
   end
 
   def update
+    @sound_trek = SoundTrek.find(params[:sound_trek_id])
+    if already_rated?(@sound_trek)
+      @rating = Rating.find_by(trekker_id: session[:user_id])
+      @rating.update_attributes(stars: rating_params[:stars])
+      redirect_to sound_trek_path(@sound_trek)
+    end
   end
 
   private
