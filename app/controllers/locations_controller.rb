@@ -1,15 +1,8 @@
 class LocationsController < ApplicationController
 
   def index
-    # turn current location into some kind of data type that we can query the db for
-    # @locations = Location.all
-    # iterate through @locations and select the ones that are 500 m away
-    @locations = Location.all
+    @locations = Location.near([41.8762180, -87.6531470], 0.5, :units => :km)
     render json: @locations
-
-    # pg has postgis extension
-    # query for locations that are x miles away
-    # define a box around a current position
   end
 
   def create
