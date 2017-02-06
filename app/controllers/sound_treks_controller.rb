@@ -5,14 +5,22 @@ class SoundTreksController < ApplicationController
   end
 
   def show
-    RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
-    user = User.find_by(:id => session[:user_id])
-    spotify_user = RSpotify::User.find(user.spotify_id)
-    sound_trek = SoundTrek.find_by(:id => params[:soundtrekId].to_i)
-    playlist = RSpotify::Playlist.find(user.spotify_id, sound_trek.playlist)
-    base_url = "https://embed.spotify.com/?uri=spotify:user:#{user.spotify_id}:playlist:#{playlist.id}"
-    respond_to do |format|
-      format.json { render layout: false, json: {:base_url => base_url }}
+    if request.xhr?
+      RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+      sound_trek = SoundTrek.find_by(:id => params[:soundtrekId].to_i)
+      creator = sound_trek.trekker
+      playlist = RSpotify::Playlist.find(creator.spotify_id, sound_trek.playlist)
+      base_url = "https://embed.spotify.com/?uri=spotify:user:#{creator.spotify_id}  :playlist:#{playlist.id}"
+      respond_to do |format|
+        format.json { render layout: false, json: {:base_url => base_url }}
+      end
+    else
+      @sound_trek = SoundTrek.find(params[:id])
+      RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+      @creator = @sound_trek.trekker
+      @playlist = RSpotify::Playlist.find(@creator.spotify_id, @sound_trek.playlist)
+      base_url = "https://embed.spotify.com/?uri=spotify:user:#{@creator.spotify_id}  :playlist:#{@playlist.id}"
+      @sound_trek
     end
   end
 

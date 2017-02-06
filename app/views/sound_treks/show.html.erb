@@ -12,3 +12,9 @@
                         method: :delete,
                         data: { confirm: 'Are you sure?' } %>
 <%# end %>
+  <div class="playlist-show">
+  <iframe src="https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>" width="300" height="380" frameborder="0"></iframe>)
+      <div class="loader">
+        <div class="inner-circle"></div>
+      </div>
+    </div>
