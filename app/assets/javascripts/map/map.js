@@ -18,7 +18,7 @@ function successPosition(position) { // success
   var latitude = position.coords.latitude
   var longitude = position.coords.longitude
 
-  // create a location record in database
+  // creates a location record in database
   $.ajax({
     url: '/locations',
     type: 'POST',
@@ -60,3 +60,9 @@ function placeSoundTrek() {
     getLocation();
   })
 }
+
+// callback for map initiation to query db for all locations
+
+var marker = new google.maps.Marker({
+  position: new google.maps.LatLng(response.lat, response.lng)
+})
