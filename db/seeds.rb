@@ -35,6 +35,14 @@ end
   SoundTrek.create!(soundtrek_info)
 end
 
+30.times do
+  rating_info = {
+    sound_trek_id: (1..10).to_a.sample
+    trekker_id: (1..10).to_a.sample
+    stars: (1..5).to_a.sample
+    }
+  Rating.create!(rating_info)
+end
 
 
 
