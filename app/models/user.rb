@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  has_many :playlists, foreign_key: :creator_id
-  has_many :sound_treks, through: :playlists
+  has_many :sound_treks, foreign_key: "trekker_id"
 
   def self.sign_in_from_omniauth(auth)
     # user_id = auth["extra"]["raw_info"]["id"]

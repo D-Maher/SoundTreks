@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170206015417) do
   create_table "sound_treks", force: :cascade do |t|
     t.text     "description"
     t.string   "title",                     null: false
+    t.integer  "trekker_id",                null: false
     t.integer  "location_id",               null: false
     t.string   "playlist",                  null: false
     t.float    "radius",      default: 5.0
@@ -33,10 +34,10 @@ ActiveRecord::Schema.define(version: 20170206015417) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider"
-    t.string   "uid"
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
     t.string   "name"
-    t.string   "spotify_id"
+    t.string   "spotify_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -10,7 +10,8 @@
   user_info = {
     provider: "spotify",
     uid: Faker::Lorem.word,
-    name: Faker::Name.name
+    name: Faker::Name.name,
+    spotify_id: Faker::Lorem.word
     }
   User.create!(user_info)
 end
@@ -27,7 +28,8 @@ end
   soundtrek_info = {
     description: Faker::Lorem.sentence,
     title: Faker::Lorem.word,
-    location_id: (1..5).to_a.sample,
+    trekker_id: (1..10).to_a.sample,
+    location_id: (1..10).to_a.sample,
     playlist: Faker::Lorem.word,
     }
   SoundTrek.create!(soundtrek_info)
