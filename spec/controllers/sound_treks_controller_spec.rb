@@ -5,9 +5,7 @@ RSpec.describe SoundTreksController, type: :controller do
 
   let (:location) {Location.create!(latitude: 41.881832, longitude:-87.623177)}
 
-  let (:playlist) {Playlist.create!(title: "RnB Mountain Climbing", creator_id: user.id, spotify_id: "sdfhsakd")}
-
-  let (:soundtrek) {SoundTrek.create!(description: "This is a SoundTrek", title: "A New SoundTrek", location_id: location.id, playlist_id: playlist.id)}
+  let (:soundtrek) {SoundTrek.create!(description: "This is a SoundTrek", trekker_id: user.id, title: "A New SoundTrek", location_id: location.id, playlist: "fasdfsadff")}
 
   describe "GET #edit" do
     it "responds with status code 200" do
