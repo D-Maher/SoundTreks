@@ -9,7 +9,7 @@ end
 
 resources :sound_treks, only: [:show]
 
-get 'auth/spotify/callback', to: "sessions#create"
+get '/auth/spotify/callback', to: "sessions#create"
 delete 'sign_out', to: "sessions#destroy", as: 'sign_out'
 
 resources :users
