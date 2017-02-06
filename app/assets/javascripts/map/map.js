@@ -6,7 +6,7 @@ function centerMapOnCurrentLocation() {
 }
 
 // remember to handle errors
-function getLocation() {
+function getCurrentLocation() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successPosition, error, options)
@@ -18,7 +18,7 @@ function successPosition(position) { // success
   var latitude = position.coords.latitude
   var longitude = position.coords.longitude
 
-  // create a location record in database
+  // creates a location record in database
   $.ajax({
     url: '/locations',
     type: 'POST',
@@ -42,6 +42,7 @@ function initMap(location) {
     center: {lat: location.coords.latitude, lng: location.coords.longitude},
     zoom: 15
   });
+  getLocations(map);
 }
 
 function error(err) {
@@ -57,9 +58,24 @@ var options = {
 function storeLocation() {
   $('#create-sound-trek').on("click", function(event) {
     event.preventDefault();
-    getLocation();
+    getCurrentLocation();
   })
 }
+
+function getLocations(map){
+ $.ajax({
+   url: '/locations',
+   type: 'GET',
+ })
+ .done(function(response) {
+    for (var i=0; i < response.length; i++){
+      var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+      map: map
+      })
+    }
+  });
+};
 
 function createSoundTrek() {
   $('#new-sound-trek-container').on("submit", "#new-sound-trek-form", function(event) {
@@ -73,8 +89,7 @@ function createSoundTrek() {
       data: formData,
     })
     .done(function() {
-      console.log("LOCO BUENNNOOOOOOOO!!!!");
-
+       console.log("success");
     })
     .fail(function() {
       console.log("error");
@@ -82,7 +97,5 @@ function createSoundTrek() {
     .always(function() {
       console.log("complete");
     });
-
-
   })
 }
