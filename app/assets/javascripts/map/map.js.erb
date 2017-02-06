@@ -94,17 +94,18 @@ function getMarker(marker) {
 }
 
 function getLocations(map){
-  $.ajax({
-    url: '/locations',
-    type: 'GET',
-  })
-  .done(function(response){
+ $.ajax({
+   url: '/locations',
+   type: 'GET',
+   // data: current location
+ })
+ .done(function(response) {
     var allMarkers = [];
-    for (var i = 0; i < response.length; i++){
+    for (var i=0; i < response.length; i++){
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
         icon: soundTrekIcon,
-        map: map
+        map: map,
         soundtrekId: response[i].id
       });
        allMarkers.push(marker);
