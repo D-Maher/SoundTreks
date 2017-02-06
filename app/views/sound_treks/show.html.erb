@@ -3,7 +3,11 @@
 <div id="no_access"><%= flash[:no_access_delete] %></div><br>
 <div id="no_access"><%= flash[:no_access_edit] %></div><br>
 
-<h2>Description</h2><br>
+<h2>Ratings</h2>
+<div><%= @sound_trek.average_rating %> stars<br>
+<%= @sound_trek.num_of_ratings %> ratings</div>
+
+<h3>Description</h3><br>
 <div><%= @sound_trek.description %></div>
 
 <%# if sound_trek_owner?(@sound_trek) %>
