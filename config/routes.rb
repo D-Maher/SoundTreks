@@ -9,7 +9,7 @@ end
 
 resources :sound_treks, only: [:show]
 
-get 'soundtreks.herokuapp.com/callback', to: "sessions#create"
+get 'https://soundtreks.herokuapp.com/callback', to: "sessions#create"
 delete 'sign_out', to: "sessions#destroy", as: 'sign_out'
 
 resources :users
