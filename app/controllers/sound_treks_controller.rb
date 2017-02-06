@@ -10,7 +10,8 @@ class SoundTreksController < ApplicationController
       sound_trek = SoundTrek.find_by(:id => params[:soundtrekId].to_i)
       creator = sound_trek.trekker
       playlist = RSpotify::Playlist.find(creator.spotify_id, sound_trek.playlist)
-      base_url = "https://embed.spotify.com/?uri=spotify:user:#{creator.spotify_id}  :playlist:#{playlist.id}"
+      base_url = "https://embed.spotify.com/?uri=spotify:user:#{creator.spotify_id}:playlist:#{playlist.id}"
+      #           https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>
       respond_to do |format|
         format.json { render layout: false, json: {:base_url => base_url }}
       end
@@ -21,7 +22,7 @@ class SoundTreksController < ApplicationController
         RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
         @creator = @sound_trek.trekker
         @playlist = RSpotify::Playlist.find(@creator.spotify_id, @sound_trek.playlist)
-        base_url = "https://embed.spotify.com/?uri=spotify:user:#{@creator.spotify_id}  :playlist:#{@playlist.id}"
+        base_url = "https://embed.spotify.com/?uri=spotify:user:#{@creator.spotify_id}:playlist:#{@playlist.id}"
         @sound_trek
       else
         flash[:no_show_access] = "You must be logged in to view SoundTreks."
