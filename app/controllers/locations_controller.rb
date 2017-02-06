@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
     # @locations = Location.all
     # iterate through @locations and select the ones that are 500 m away
     @locations = Location.all
-    render json: @
+    render json: @locations
 
     # pg has postgis extension
     # query for locations that are x miles away
