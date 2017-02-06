@@ -4,12 +4,13 @@ class SoundTrek < ApplicationRecord
   belongs_to :location, dependent: :destroy
   has_many :ratings
 
-  def aggregate_rating
-    sample_size = self.ratings.length
-    if sample_size > 0
-      self.ratings.collect{|x| x.stars}.reduce(:+).to_f / sample_size
+  def average_rating
+    num_of_ratings = self.ratings.length
+    if num_of_ratings > 0
+      self.ratings.collect{|rating| rating.stars}.reduce(:+).to_f / num_of_ratings
     else
       0
     end
   end
+
 end
