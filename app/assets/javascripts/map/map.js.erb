@@ -27,7 +27,10 @@ function successPosition(position) {
   var latitude = position.coords.latitude
   var longitude = position.coords.longitude
 
-  // creates a location record in database
+  // on click of create soundtrek, append form
+  // on submit of his form, create soundtrek in database (data is serialized: lat, lng; post to soundtreks)
+
+  // creates a location record in database (should we remove locations?)
   $.ajax({
     url: '/locations',
     type: 'POST',
