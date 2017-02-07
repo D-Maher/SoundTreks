@@ -4,9 +4,7 @@
     <title>SoundTreks</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_secret'] %>&callback=initMap">
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_maps_secret'] %>"></script>
 
     <%= csrf_meta_tags %>
 
