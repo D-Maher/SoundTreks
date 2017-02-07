@@ -1,5 +1,5 @@
 class SoundTrek < ApplicationRecord
-  validates :location_id, :title, :latitude, :longitude, presence: true
+  validates :title, :latitude, :longitude, presence: true
   validates :latitude, :longitude, numericality: true
 
   belongs_to :trekker, class_name: "User"

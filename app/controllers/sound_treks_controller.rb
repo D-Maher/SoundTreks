@@ -61,12 +61,13 @@ class SoundTreksController < ApplicationController
 
   def create
     if logged_in?
-      @sound_trek = SoundTrek.new(sound_trek_params)
-      if @sound_trek.save
-        redirect_to @sound_trek
-      else
-        @errors = @sound_trek.errors.full_messages
-        render "new"
+      if request.xhr?
+        @sound_trek = SoundTrek.new(sound_trek_params)
+        if @sound_trek.save
+          redirect_to @sound_trek
+        else
+          render status 422
+        end
       end
     else
       flash[:no_access_create] = "You must be logged in to create a SoundTrek."
@@ -98,6 +99,6 @@ class SoundTreksController < ApplicationController
   private
 
   def sound_trek_params
-    params.require(:sound_trek).permit(:description, :title, :location_id, :playlist, :trekker_id)
+    params.require(:sound_trek).permit(:title, :description, :playlist, :trekker_id, :latitude, :longitude)
   end
 end

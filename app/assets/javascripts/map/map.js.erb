@@ -19,34 +19,8 @@ function centerMapOnCurrentLocation() {
 // remember to handle errors
 function getCurrentLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(successPosition, error, options)
+    navigator.geolocation.getCurrentPosition(createNewSoundTrek, error, options)
   }
-}
-
-function successPosition(position) {
-  var latitude = position.coords.latitude
-  var longitude = position.coords.longitude
-
-  // on click of create soundtrek, append form
-  // on submit of his form, create soundtrek in database (data is serialized: lat, lng; post to soundtreks)
-
-  // creates a location record in database (should we remove locations?)
-  $.ajax({
-    url: '/locations',
-    type: 'POST',
-    data: {location:{latitude: latitude, longitude: longitude}}
-  })
-  .done(function(response) {
-    console.log("success");
-    $("#new-sound-trek-container").html(response);
-  })
-  .fail(function() {
-    $("#new-sound-trek-container").html("<div id='not-logged-in'>You must be logged in to create a SoundTrek.<div>");
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
-  });
 }
 
 function initMap(location) {
@@ -60,7 +34,7 @@ function initMap(location) {
 }
 
 function error(err) {
-  console.warn('ERROR(${error.code}): ${err.message}');
+  alert("Unable to geolocate.");
 };
 
 var options = {
@@ -79,6 +53,40 @@ function getNewSoundTrekForm() {
     .done(function(response) {
       console.log("FORM APPENDED!");
       $("#new-sound-trek-container").html(response);
+    });
+  })
+}
+
+function createNewSoundTrek(position) {
+  var latitude = position.coords.latitude
+  var longitude = position.coords.longitude
+
+  $("#new-sound-trek-container").on("submit", "#new-sound-trek-form", function(event) {
+    event.preventDefault();
+
+    var title = $(this).find($("#sound_trek_title")).val();
+    var description = $(this).find($("#sound_trek_description")).val();
+    var playlist = $(this).find($("#sound_trek_playlist")).val();
+    var trekker_id = $(this).find($("#sound_trek_trekker_id")).val();
+
+    // on click of create soundtrek, append form
+    // on submit of his form, create soundtrek in database (data is serialized: lat, lng; post to soundtreks)
+
+    // creates a location record in database (should we remove locations?)
+    $.ajax({
+      url: '/sound_treks',
+      type: 'POST',
+      data: {sound_trek:{title: title, description: description, playlist: playlist, trekker_id: trekker_id, latitude: latitude, longitude: longitude}}
+    })
+    .done(function(response) {
+      console.log("success");
+    })
+    .fail(function() {
+      $("#new-sound-trek-container").html("<div id='not-logged-in'>SoundTrek not created!<div>");
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
     });
   })
 }

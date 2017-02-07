@@ -37,4 +37,5 @@ $(document).ready(function(){
 $(function() {
   centerMapOnCurrentLocation();
   getNewSoundTrekForm();
+  getCurrentLocation();
 });
