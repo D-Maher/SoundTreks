@@ -46,12 +46,6 @@ function successPosition(position) {
   });
 }
 
-function removeForm(){
-  $("#new-sound-trek-container").on("submit", "#new-sound-trek-form", function(){
-    $(this).remove();
-  })
-}
-
 function initMap(location) {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: location.coords.latitude, lng: location.coords.longitude},
