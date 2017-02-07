@@ -68,10 +68,6 @@ function createNewSoundTrek(position) {
     var playlist = $(this).find($("#sound_trek_playlist")).val();
     var trekker_id = $(this).find($("#sound_trek_trekker_id")).val();
 
-    // on click of create soundtrek, append form
-    // on submit of his form, create soundtrek in database (data is serialized: lat, lng; post to soundtreks)
-
-    // creates a location record in database (should we remove locations?)
     $.ajax({
       url: '/sound_treks',
       type: 'POST',
@@ -79,6 +75,8 @@ function createNewSoundTrek(position) {
     })
     .done(function(response) {
       console.log("success");
+      console.log(response);
+      window.location.href = "/sound_treks/" + response
     })
     .fail(function() {
       $("#new-sound-trek-container").html("<div id='not-logged-in'>SoundTrek not created!<div>");

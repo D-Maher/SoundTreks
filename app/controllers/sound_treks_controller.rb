@@ -16,7 +16,6 @@ class SoundTreksController < ApplicationController
       creator = sound_trek.trekker
       playlist = RSpotify::Playlist.find(creator.spotify_id, sound_trek.playlist)
       base_url = "https://embed.spotify.com/?uri=spotify:user:#{creator.spotify_id}:playlist:#{playlist.id}"
-      #           https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>
       respond_to do |format|
         format.json { render layout: false, json: {:base_url => base_url }}
       end
@@ -63,7 +62,7 @@ class SoundTreksController < ApplicationController
       if request.xhr?
         @sound_trek = SoundTrek.new(sound_trek_params)
         if @sound_trek.save
-          redirect_to @sound_trek
+          render json: @sound_trek.id
         else
           render status 422
         end
