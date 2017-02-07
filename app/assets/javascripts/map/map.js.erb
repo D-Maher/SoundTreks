@@ -56,7 +56,7 @@ function initMap(location) {
   });
   createUserMarker(map, location);
   createUserRadius(map, location);
-  getLocations(map, location);
+  getSoundTreks(map, location);
 }
 
 function error(err) {
@@ -69,10 +69,17 @@ var options = {
   maximumAge: 0
 };
 
-function storeLocation() {
+function getNewSoundTrekForm() {
   $('#create-sound-trek').on("click", function(event) {
     event.preventDefault();
-    getCurrentLocation();
+    $.ajax({
+      url: 'sound_treks/new',
+      type: 'GET',
+    })
+    .done(function(response) {
+      console.log("FORM APPENDED!");
+      $("#new-sound-trek-container").html(response);
+    });
   })
 }
 
@@ -90,15 +97,16 @@ function getMarker(marker) {
   })
 }
 
-function getLocations(map, location){
+function getSoundTreks(map, location){
  $.ajax({
-   url: '/locations',
+   url: '/sound_treks',
    type: 'GET',
-   data: {lat: location.coords.latitude, lng: location.coords.longitude}
+   data: {lat: location.coords.latitude, lng: location.coords.longitude} // user's current location
  })
  .done(function(response) {
+  console.log(response);
     var allMarkers = [];
-    for (var i=0; i < response.length; i++){
+    for (var i = 0; i < response.length; i++){
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
         icon: soundTrekIcon,

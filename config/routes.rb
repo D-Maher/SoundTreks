@@ -3,11 +3,7 @@ root 'sound_treks#index'
 
 get 'session/index'
 
-resources :locations do
-  resources :sound_treks, except: [:new]
-end
-
-resources :sound_treks, only: [:show] do
+resources :sound_treks do
   resources :ratings, only: [:create, :update]
 end
 

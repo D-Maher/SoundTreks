@@ -2,6 +2,12 @@ class SoundTreksController < ApplicationController
   include SoundTreksHelper
 
   def index
+    if request.xhr?
+      p "GET REQUEST RECEIVED"
+      @nearby_sound_treks = SoundTrek.near([params[:lat], params[:lng]], 0.5, :units => :km)
+      p @nearby_sound_treks
+      render json: @nearby_sound_treks
+    end
   end
 
   def show
@@ -28,6 +34,18 @@ class SoundTreksController < ApplicationController
         flash[:no_show_access] = "You must be logged in to view SoundTreks."
         redirect_to "/"
       end
+    end
+  end
+
+  def new
+    RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+    user = User.find_by(:id => session[:user_id])
+    spotify_user = RSpotify::User.find(user.spotify_id)
+    @playlists = spotify_user.playlists
+
+    @sound_trek = SoundTrek.new
+    if request.xhr?
+      render 'sound_treks/_new', layout: false
     end
   end
 
@@ -78,6 +96,7 @@ class SoundTreksController < ApplicationController
   end
 
   private
+
   def sound_trek_params
     params.require(:sound_trek).permit(:description, :title, :location_id, :playlist, :trekker_id)
   end
