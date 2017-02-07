@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   def index
-    @locations = Location.near([41.8762180, -87.6531470], 0.5, :units => :km)
+    @locations = Location.near([params[:lat], params[:lng]], 0.5, :units => :km)
     render json: @locations
   end
 

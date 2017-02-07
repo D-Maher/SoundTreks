@@ -59,7 +59,7 @@ function initMap(location) {
   });
   createUserMarker(map, location);
   createUserRadius(map, location);
-  getLocations(map);
+  getLocations(map, location);
 }
 
 function error(err) {
@@ -93,11 +93,11 @@ function getMarker(marker) {
   })
 }
 
-function getLocations(map){
+function getLocations(map, location){
  $.ajax({
    url: '/locations',
    type: 'GET',
-   // data: current location
+   data: {lat: location.coords.latitude, lng: location.coords.longitude}
  })
  .done(function(response) {
     var allMarkers = [];
@@ -115,15 +115,6 @@ function getLocations(map){
     }
   });
 }
-
-//       position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
-//       icon: soundTrekIcon,
-//       map: map
-//       })
-//       console.log(marker.position);
-//     }
-//   });
-// };
 
 function createUserMarker(map, location) {
   var userMarker = new google.maps.Marker({
