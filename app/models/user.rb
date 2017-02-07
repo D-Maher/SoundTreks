@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :sound_treks, foreign_key: "trekker_id"
+  has_many :sound_treks, foreign_key: "trekker_id", dependent: :destroy
   has_many :ratings, foreign_key: "trekker_id"
 
   def self.sign_in_from_omniauth(auth)

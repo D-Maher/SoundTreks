@@ -2,6 +2,10 @@ class SoundTreksController < ApplicationController
   include SoundTreksHelper
 
   def index
+    if request.xhr? && logged_in?
+      @nearby_sound_treks = SoundTrek.near([params[:lat], params[:lng]], 0.5, :units => :km)
+      render json: @nearby_sound_treks
+    end
   end
 
   def show
@@ -11,7 +15,6 @@ class SoundTreksController < ApplicationController
       creator = sound_trek.trekker
       playlist = RSpotify::Playlist.find(creator.spotify_id, sound_trek.playlist)
       base_url = "https://embed.spotify.com/?uri=spotify:user:#{creator.spotify_id}:playlist:#{playlist.id}"
-      #           https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>
       respond_to do |format|
         format.json { render layout: false, json: {:base_url => base_url }}
       end
@@ -31,6 +34,18 @@ class SoundTreksController < ApplicationController
     end
   end
 
+  def new
+    RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+    user = User.find_by(:id => session[:user_id])
+    spotify_user = RSpotify::User.find(user.spotify_id)
+    @playlists = spotify_user.playlists
+
+    @sound_trek = SoundTrek.new
+    if request.xhr?
+      render 'sound_treks/_new', layout: false
+    end
+  end
+
   def edit
     @sound_trek = SoundTrek.find(params[:id])
     if sound_trek_owner?(@sound_trek)
@@ -43,12 +58,13 @@ class SoundTreksController < ApplicationController
 
   def create
     if logged_in?
-      @sound_trek = SoundTrek.new(sound_trek_params)
-      if @sound_trek.save
-        redirect_to @sound_trek
-      else
-        @errors = @sound_trek.errors.full_messages
-        render "new"
+      if request.xhr?
+        @sound_trek = SoundTrek.new(sound_trek_params)
+        if @sound_trek.save
+          render json: @sound_trek.id
+        else
+          render status 422
+        end
       end
     else
       flash[:no_access_create] = "You must be logged in to create a SoundTrek."
@@ -78,7 +94,8 @@ class SoundTreksController < ApplicationController
   end
 
   private
+
   def sound_trek_params
-    params.require(:sound_trek).permit(:description, :title, :location_id, :playlist, :trekker_id)
+    params.require(:sound_trek).permit(:title, :description, :playlist, :trekker_id, :latitude, :longitude)
   end
 end
