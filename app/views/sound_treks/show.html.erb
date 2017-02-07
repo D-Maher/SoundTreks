@@ -31,7 +31,7 @@
     <p>Change your rating?</p>
     <%= form_for @rating, url: sound_trek_rating_path(@sound_trek), method: :put do |f| %>
     <p><%= f.select :stars, options_for_select([['1 star', 1.00], ['2 stars', 2.00], ['3 stars', 3.00], ['4 stars', 4.00], ['5 stars', 5.00]]) %></p><br>
-    <%= f.submit "Edit Rating" %>
+    <%= f.submit "Update Rating" %>
     <% end %>
   <% end %>
 </div><br>
@@ -47,8 +47,8 @@
 <h3>Options</h3>
   <div id="edit-delete-soundtreks">
     <% if sound_trek_owner?(@sound_trek) %>
-      <%= link_to "Edit", edit_location_sound_trek_path(@sound_trek.location_id, @sound_trek.id) %><br>
-      <%= link_to 'Delete', location_sound_trek_path(@sound_trek.location_id, @sound_trek.id),
+      <%= link_to "Edit", edit_sound_trek_path(@sound_trek.id) %><br>
+      <%= link_to 'Delete', sound_trek_path(@sound_trek.id),
                             method: :delete,
                             data: { confirm: 'Are you sure?' } %>
     <% end %>

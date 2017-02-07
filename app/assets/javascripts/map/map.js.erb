@@ -51,7 +51,6 @@ function getNewSoundTrekForm() {
       type: 'GET',
     })
     .done(function(response) {
-      console.log("FORM APPENDED!");
       $("#new-sound-trek-container").html(response);
     });
   })
@@ -112,7 +111,6 @@ function getSoundTreks(map, location){
    data: {lat: location.coords.latitude, lng: location.coords.longitude} // user's current location
  })
  .done(function(response) {
-  console.log(response);
     var allMarkers = [];
     for (var i = 0; i < response.length; i++){
       var marker = new google.maps.Marker({
