@@ -18,15 +18,13 @@
   <div class="show-soundtrek-flash-message"><%= flash[:update_rating] %></div><br>
 
 
-  <% if !already_rated?(@sound_trek) && !sound_trek_creator?%>
+  <% if !already_rated?(@sound_trek)  %>
     <h4>Rate This SoundTrek</h4>
-    <% p "NOT YET RATED!!!" %>
     <%= form_for @rating, url: sound_trek_ratings_path(@sound_trek) do |f| %>
     <p><%= f.select :stars, options_for_select([['1 star', 1.00], ['2 stars', 2.00], ['3 stars', 3.00], ['4 stars', 4.00], ['5 stars', 5.00]]) %></p><br>
     <%= f.submit "Submit Rating" %>
     <% end %>
-  <% elsif already_rated?(@sound_trek) && !sound_trek_creator? %>
-    <% p "ALREADY RATED!!!" %>
+  <% elsif already_rated?(@sound_trek)  %>
     <p>You have given this SoundTrek a rating of <%= @sound_trek.ratings.find_by(trekker_id: current_user.id).stars %> stars.</p><br>
     <p>Change your rating?</p>
     <%= form_for @rating, url: sound_trek_rating_path(@sound_trek), method: :put do |f| %>

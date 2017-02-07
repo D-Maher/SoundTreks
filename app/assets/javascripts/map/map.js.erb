@@ -75,7 +75,6 @@ function createNewSoundTrek(position) {
     })
     .done(function(response) {
       console.log("success");
-      console.log(response);
       window.location.href = "/sound_treks/" + response
     })
     .fail(function() {
