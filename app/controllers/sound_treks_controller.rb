@@ -38,11 +38,16 @@ class SoundTreksController < ApplicationController
   end
 
   def new
+    @playlists = Array.new
     RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
     user = User.find_by(:id => session[:user_id])
     spotify_user = RSpotify::User.find(user.spotify_id)
-    @playlists = spotify_user.playlists
-
+    spotify_user.playlists.each do |playlist|
+      if playlist.uri.match(/\b#{user.spotify_id}\b/) != nil
+        @playlists << playlist
+      end
+    end
+    @playlists
     @sound_trek = SoundTrek.new
     if request.xhr?
       render 'sound_treks/_new', layout: false
