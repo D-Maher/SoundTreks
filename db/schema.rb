@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206233938) do
+ActiveRecord::Schema.define(version: 20170207212211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "locations", force: :cascade do |t|
-    t.float    "latitude",   null: false
-    t.float    "longitude",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "address"
-  end
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "sound_trek_id",             null: false
@@ -33,13 +25,14 @@ ActiveRecord::Schema.define(version: 20170206233938) do
 
   create_table "sound_treks", force: :cascade do |t|
     t.text     "description"
-    t.string   "title",                     null: false
-    t.integer  "trekker_id",                null: false
-    t.integer  "location_id",               null: false
-    t.string   "playlist",                  null: false
-    t.float    "radius",      default: 5.0
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "title",       null: false
+    t.integer  "trekker_id",  null: false
+    t.string   "playlist",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
   end
 
   create_table "users", force: :cascade do |t|
