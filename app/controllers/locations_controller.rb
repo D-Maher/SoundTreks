@@ -7,11 +7,15 @@ class LocationsController < ApplicationController
 
   def create
     if logged_in?
+      @playlists = Array.new
       RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
       user = User.find_by(:id => session[:user_id])
       spotify_user = RSpotify::User.find(user.spotify_id)
-      @playlists = spotify_user.playlists
-
+      spotify_user.playlists.each do |playlist|
+        if playlist.uri.match((/\b#{user.spotify_id}\b/)) != nil
+          @playlists.push(playlist)
+        end
+      end
       @location = Location.new(location_params)
       if request.xhr?
         @sound_trek = SoundTrek.new

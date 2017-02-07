@@ -17,9 +17,12 @@ class SoundTreksController < ApplicationController
       end
     else
       if logged_in?
+        matched_playlist = Array.new
         @rating = Rating.new
         @sound_trek = SoundTrek.find(params[:id])
         RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+        user = User.find_by(:id => session[:user_id])
+        spotify_user = RSpotify::User.find(user.spotify_id)
         @creator = @sound_trek.trekker
         @playlist = RSpotify::Playlist.find(@creator.spotify_id, @sound_trek.playlist)
         base_url = "https://embed.spotify.com/?uri=spotify:user:#{@creator.spotify_id}:playlist:#{@playlist.id}"
