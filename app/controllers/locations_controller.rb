@@ -2,6 +2,7 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.near([params[:lat], params[:lng]], 0.5, :units => :km)
+    # @locations = Location.all
     render json: @locations
   end
 
@@ -33,3 +34,10 @@ class LocationsController < ApplicationController
   end
 end
 
+# IDEAS
+
+# users instincts
+
+# only adjust map view by physically moving (tracks location)
+
+# logic for desktop browser vs phone browser (click vs tap, pinch vs scroll zoom)
