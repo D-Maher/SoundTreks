@@ -6,4 +6,8 @@ module SessionsHelper
   def logged_in?
     session[:user_id] != nil
   end
+
+  def sound_trek_creator?
+    session[:user_id] == @sound_trek.trekker_id
+  end
 end

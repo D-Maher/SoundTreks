@@ -4,7 +4,7 @@ class RatingsController < ApplicationController
   def create
     @sound_trek = SoundTrek.find_by(id: params[:sound_trek_id])
 
-    if !already_rated?(@sound_trek)
+    if !already_rated?(@sound_trek) && !sound_trek_creator?
       @rating = @sound_trek.ratings.new(rating_params)
       @rating.update_attributes(sound_trek_id: params[:sound_trek_id], trekker_id: session[:user_id])
       if @rating.save
@@ -13,7 +13,7 @@ class RatingsController < ApplicationController
       else
        render file: 'public/404.html'
       end
-    else
+    elsif already_rated?(@sound_trek) && !sound_trek_creator?
       redirect_to sound_trek_path(@sound_trek)
     end
   end
