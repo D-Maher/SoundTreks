@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  let(:user) { User.new(provider: "spotify", uid: "ashley", name: "Ash", spotify_id: "skdhfls") }
+  let(:user) { User.new(provider: "spotify", uid: "ashley", nick_name: "Ash", spotify_id: "skdhfls") }
 
   it 'has a provider' do
     expect(user.provider).to eq "spotify"
@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'has name' do
-    expect(user.name).to eq "Ash"
+    expect(user.nick_name).to eq "Ash"
   end
 
   it 'has spotify_id' do

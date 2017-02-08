@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe SoundTrek, type: :model do
   let(:sound_trek) { SoundTrek.new(description: "I love hiking and listening to this", title: "Hiking", trekker_id: 1, playlist: "skdhfls", latitude: 41.8762180, longitude: -87.6531470) }
 
-  let(:user) { User.create!(provider: "spotify", uid: "ashleyyang", name: "Ash", spotify_id: "skdhfls") }
+  let(:user) { User.create!(provider: "spotify", uid: "ashleyyang", nick_name: "Ash", spotify_id: "skdhfls") }
 
   let(:saved_sound_trek) { SoundTrek.new(description: "I love biking and listening to this", title: "Biking", trekker_id: user.id, playlist: "skdhfls", latitude: 41.8762180, longitude: -87.6531470) }
 

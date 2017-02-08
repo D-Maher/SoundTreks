@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe SoundTreksController, type: :controller do
-  let (:user) {User.create!(provider: "Spotify", uid: "somestring", name: "Ashley")}
+  let (:user) {User.create!(provider: "Spotify", uid: "somestring", nick_name: "Ashley")}
 
   let (:location) {Location.create!(latitude: 41.881832, longitude:-87.623177)}
 
