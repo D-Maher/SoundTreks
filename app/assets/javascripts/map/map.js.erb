@@ -35,7 +35,6 @@ function initMap(location) {
     streetViewControl: false
   });
   createUserMarker(map, location);
-  createUserRadius(map, location);
   getSoundTreks(map, location);
 }
 
@@ -139,17 +138,4 @@ function createUserMarker(map, location) {
     icon: userIcon,
     title: 'Current Location'
   });
-}
-
-function createUserRadius(map, location) {
-  var userRadius = new google.maps.Circle({
-    map: map,
-    radius: 500, // could be made toggleable
-    center: {lat: location.coords.latitude, lng: location.coords.longitude},
-    strokeColor: '#1dbdd6',
-    strokeOpacity: 0.5,
-    strokeWeight: 0.5,
-    fillColor: '#1dbdd6',
-    fillOpacity: 0.15
-  })
 }
