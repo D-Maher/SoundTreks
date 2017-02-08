@@ -1,14 +1,14 @@
 <h1>Edit SoundTrek</h1>
 
+<%= form_for @sound_trek, url: sound_trek_path(@sound_trek), method: :patch do |f| %>
   <% if @sound_trek.errors.any? %>
     <% @sound_trek.errors.full_messages.each do |error| %>
     <li class='error'><%= error %></li>
     <% end %>
   <% end %>
 
-<%= form_for @sound_trek, url: sound_trek_path do |f| %>
   <%= f.label :title %><br>
-  <%= f.text_area :title %><br>
+  <%= f.text_field :title %><br>
    <%= f.label :description %><br>
   <%= f.text_area :description %><br>
 
