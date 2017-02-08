@@ -1,6 +1,8 @@
 <h2><%= @sound_trek.title %></h2>
-<h3>Creator: <%= #@sound_trek.trekker.nickname %></h3>
-<h4>Created on: <%=  #@sound_trek.created_at %></h4>
+<h3>Creator: <%= @sound_trek.trekker.uid %></h3>
+<!-- change to nickname -->
+<h4>Created on <%= @sound_trek.created_at.strftime("%-m/%-d/%Y")  %></h4>
+
 
 <div class="show-soundtrek-flash-message"><%= flash[:no_access_delete] %></div><br>
 <div class="show-soundtrek-flash-message"><%= flash[:no_access_edit] %></div><br>
