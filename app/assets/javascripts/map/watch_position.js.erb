@@ -59,15 +59,11 @@ function displayAndWatch(position) {
 
 function watchCurrentPosition() {
   var positionTimer = navigator.geolocation.watchPosition(
-    function (position) {
-      setMarkerPosition(
-        currentPositionMarker,
-        position
-      ),
-    locError,
-    geolocationOptions
+    function (position) { // success function pasted in
+      placeUserAndSoundTrekMarkers(position),
+      locError,
+      geolocationOptions
   });
-  // getSoundTreks(map, position);
 }
 
 function setMarkerPosition(marker, position) {
@@ -76,6 +72,11 @@ function setMarkerPosition(marker, position) {
       position.coords.latitude,
       position.coords.longitude)
   );
+}
+
+function placeUserAndSoundTrekMarkers(position) {
+  setMarkerPosition(currentPositionMarker, position);
+  getSoundTreks(map, position);
 }
 
 var geolocationOptions = {
@@ -89,33 +90,32 @@ function initLocationProcedure() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(displayAndWatch, locError, geolocationOptions);
   } else {
-    // tell the user if a browser doesn't support this amazing API
     alert("Your browser does not support geolocation.");
   }
 }
 
-// function getSoundTreks(map, position){
-//  $.ajax({
-//    url: '/sound_treks',
-//    type: 'GET',
-//    data: {lat: position.coords.latitude, lng: position.coords.longitude} // user's current position sent to server
-//  })
-//  .done(function(response) {
-//     var allMarkers = [];
-//     for (var i = 0; i < response.length; i++){
-//       var marker = new google.maps.Marker({
-//         position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
-//         icon: soundTrekIcon,
-//         map: map,
-//         soundtrekId: response[i].id
-//       });
-//        allMarkers.push(marker);
-//     }
-//     for (var x = 0; x < allMarkers.length; x++){
-//       getMarker(allMarkers[x]);
-//     }
-//   });
-// }
+function getSoundTreks(map, position){
+ $.ajax({
+   url: '/sound_treks',
+   type: 'GET',
+   data: {lat: position.coords.latitude, lng: position.coords.longitude} // user's current position sent to server
+ })
+ .done(function(response) {
+    var allMarkers = [];
+    for (var i = 0; i < response.length; i++){
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+        icon: soundTrekIcon,
+        map: map,
+        soundtrekId: response[i].id
+      });
+       allMarkers.push(marker);
+    }
+    for (var x = 0; x < allMarkers.length; x++){
+      getMarker(allMarkers[x]);
+    }
+  });
+}
 
 // function getCurrentLocation() {
 //   if (navigator.geolocation) {
