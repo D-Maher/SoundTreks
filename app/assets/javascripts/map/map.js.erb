@@ -97,7 +97,8 @@ function getMarker(marker) {
       data: {soundtrekId: id}
     })
     .done(function(response){
-      $(".playlist").html("<iframe src=" + "" + response.base_url + " " + "width=300 height=380 frameborder=0></iframe>")
+      window.location.href = "/sound_treks/" + response.sound_trek_id
+      // $(".playlist").html("<iframe src=" + "" + response.base_url + " " + "width=300 height=380 frameborder=0></iframe>")
     })
   })
 }
