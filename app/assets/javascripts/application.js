@@ -18,4 +18,5 @@
 $(function() {
   initLocationProcedure();
   getNewSoundTrekForm();
+  showEditNickNameForm();
 });

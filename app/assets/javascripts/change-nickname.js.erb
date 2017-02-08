@@ -1,0 +1,34 @@
+function showEditNickNameForm() {
+
+  $(".edit-nickname").on("click", function(){
+    event.preventDefault();
+    var $button = $(this);
+    var id = ($button.attr("id"));
+    $.ajax({
+      url: "/users/" + id + "/edit",
+      type: "GET",
+    })
+    .done(function(response){
+      $button.hide();
+      $("#form-for-nickname").html(response);
+    })
+  updateUserNickname(id);
+  })
+}
+
+function updateUserNickname(userID) {
+  $("#form-for-nickname").on("submit", "#new-nickname", function(){
+    event.preventDefault();
+    var formData = $(this).serialize();
+    $.ajax({
+      url: "/users/" + userID,
+      type: "PATCH",
+      data: formData
+    })
+    .done(function(response){
+      $("#welcome-message").text("Welcome," + " " + response.name)
+      $("#new-nickname").hide();
+      $(".edit-nickname").show();
+    })
+  })
+}
