@@ -36,7 +36,7 @@ function initMap(location) {
 }
 
 function error(err) {
-  alert("Unable to geolocate.");
+  alert("Unable to geolocate. Please enable location settings to use SoundTreks.");
 };
 
 var options = {
@@ -94,7 +94,7 @@ function getMarker(marker) {
   marker.addListener('click', function(){
     var id = marker.soundtrekId
     $.ajax({
-      url: '/sound_treks/' + id + '',
+      url: '/sound_treks/' + id,
       type: 'GET',
       data: {soundtrekId: id}
     })
