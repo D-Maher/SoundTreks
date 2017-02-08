@@ -32,13 +32,28 @@
   background-color:black;
 }
 
-/*.white {
-  color:white !important;
-}*/
+.new-link {
+  color: white;
+}
+
+.new-link:hover {
+  display: #337ab7;
+}
 
 .form-group {
   max-width:280px;
   padding:15px;
   margin:0 auto;
   margin-top:50px;
+}
+
+.edit-nickname {
+  position: relative;
+  bottom: 50px;
+}
+
+.new {
+  max-width:180px;
+  padding:15px;
+  bottom: 350px;
 }

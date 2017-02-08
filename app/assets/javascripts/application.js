@@ -38,4 +38,5 @@ $(function() {
   centerMapOnCurrentLocation();
   getNewSoundTrekForm();
   getCurrentLocation();
+  showEditNickNameForm();
 });
