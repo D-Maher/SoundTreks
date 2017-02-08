@@ -12,27 +12,31 @@ var userIcon = {
   anchor: new google.maps.Point(8, 7)
 }
 
-function centerMapOnCurrentLocation() {
+function centerMapOnCurrentLocation() { // centers the map on user's current location when the page loads and the map is initialized
   navigator.geolocation.getCurrentPosition(initMap, error, geolocationOptions)
   window.setInterval(centerMapOnCurrentLocation, 60000)
 }
 
-// remember to handle errors
-function getCurrentLocation() {
+function getCurrentLocation() { // sends user's current coordinates to server upon creation of SoundTrek
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(createNewSoundTrek, error, geolocationOptions)
   }
 }
+
+var cleanMapStyle = [{
+  featureType: "poi",
+  elementType: "labels",
+  stylers: [{ visibility: "off" }]
+}]
 
 function initMap(location) {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: location.coords.latitude, lng: location.coords.longitude},
     draggable: false,
     zoom: 15,
-    zoomControl: false,
-    scrollwheel: false,
-    disableDoubleClickZoom: true,
-    streetViewControl: false
+    minZoom: 15,
+    streetViewControl: false,
+    styles: cleanMapStyle
   });
   createUserMarker(map, location);
   getSoundTreks(map, location);
