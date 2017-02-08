@@ -3,7 +3,7 @@ class SoundTreksController < ApplicationController
 
   def index
     if request.xhr? && logged_in?
-      @nearby_sound_treks = SoundTrek.near([params[:lat], params[:lng]], 0.1, :units => :km)
+      @nearby_sound_treks = SoundTrek.near([params[:lat], params[:lng]], 0.5, :units => :km)
       render json: @nearby_sound_treks
     end
   end
