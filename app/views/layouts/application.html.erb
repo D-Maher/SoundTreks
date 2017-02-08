@@ -26,19 +26,39 @@
 
   <body>
 
-    <h1 align="center">SoundTreks</h1>
-      <div class="nav-bar">
-        <ul>
-          <li><%= link_to "Home", root_path %></li>
-          <% if current_user %>
+    <div class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <a href="#" class="navbar-brand">SoundTreks</a>
+
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <div class="collapse navbar-collapse navHeaderCollapse">
+
+          <ul class="nav navbar-nav navbar-right">
+
+            <li><%= link_to "Home", root_path %></li>
+
+            <% if current_user %>
+
             <li><%= link_to current_user.uid, user_path(current_user.id) %></li>
             <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
-          <% else %>
-            <h3>Login with Spotify</h3>
-            <%= link_to image_tag('spotify.png', width: '', height: '50') , "/auth/spotify" %>
+
+
+            <% else %>
+
+            <li><%= link_to "Login", "/auth/spotify" %></li>
+
           <% end %>
-        </ul>
+          </ul>
+        </div>
       </div>
+    </div>
+
+
 
     <div class="playlist">
       <div class="loader">
