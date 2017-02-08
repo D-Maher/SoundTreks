@@ -9,12 +9,14 @@
 <% end %>
 
 <%= form_for @sound_trek, url: sound_treks_path, html: {id: "new-sound-trek-form"} do |f| %>
+  <div class="form-group">
   <%= f.label :title %><br>
-  <%= f.text_field :title %><br><br>
+  <%= f.text_field :title, class: 'form-control' %><br><br>
    <%= f.label :description %><br>
-  <%= f.text_area :description %><br><br>
+  <%= f.text_area :description, class: 'form-control' %><br><br>
   <%= f.label "Select a playlist:" %><br>
   <%= f.select(:playlist, options_from_collection_for_select(@playlists, 'id', 'name')) %><br><br>
   <%= f.hidden_field :trekker_id, :value => current_user.id %>
-  <%= f.submit "Submit" %>
+  <%= f.submit "Submit", class: 'form-control' %>
+  </div>
 <% end %>

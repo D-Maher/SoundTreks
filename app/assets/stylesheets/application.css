@@ -21,3 +21,24 @@
   margin-left: -100px;
 }*/
 
+.btn {
+  max-width:280px;
+  padding:15px;
+  margin:0 auto;
+  margin-top:50px;
+}
+
+.black-background {
+  background-color:black;
+}
+
+/*.white {
+  color:white !important;
+}*/
+
+.form-group {
+  max-width:280px;
+  padding:15px;
+  margin:0 auto;
+  margin-top:50px;
+}
