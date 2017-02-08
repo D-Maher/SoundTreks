@@ -52,11 +52,13 @@ function setCurrentPosition(pos) {
 function displayAndWatch(position) {
   // set current position
   setCurrentPosition(position);
-
   // watch position
   watchCurrentPosition();
+  // get position for users on nonmobile devices
+  staticCurrentPosition(position);
 }
 
+// function to render SoundTreks on mobile devices
 function watchCurrentPosition() {
   var positionTimer = navigator.geolocation.watchPosition(
     function (position) { // success function pasted in
@@ -64,6 +66,11 @@ function watchCurrentPosition() {
       locError,
       geolocationOptions
   });
+}
+
+// function to render SoundTreks on nonmobile devices
+function staticCurrentPosition(position) {
+  placeUserAndSoundTrekMarkers(position);
 }
 
 function setMarkerPosition(marker, position) {
@@ -112,9 +119,23 @@ function getSoundTreks(map, position){
        allMarkers.push(marker);
     }
     for (var x = 0; x < allMarkers.length; x++){
-      getMarker(allMarkers[x]);
+      clickMarker(allMarkers[x]);
     }
   });
+}
+
+function clickMarker(marker) {
+  marker.addListener('click', function(){
+    var id = marker.soundtrekId
+    $.ajax({
+      url: '/sound_treks/' + id,
+      type: 'GET',
+      data: {soundtrekId: id}
+    })
+    .done(function(response){
+      window.location.href = "/sound_treks/" + response.sound_trek_id
+    })
+  })
 }
 
 // function getCurrentLocation() {
