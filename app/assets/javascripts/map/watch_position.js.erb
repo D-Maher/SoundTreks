@@ -1,0 +1,155 @@
+var userIcon = {
+  url: "<%= asset_path('user_marker.png') %>",
+  scaledSize: new google.maps.Size(15, 15),
+  anchor: new google.maps.Point(8, 7)
+}
+
+var soundTrekIcon = {
+  url: "<%= asset_path('sound_trek_marker.png') %>",
+  scaledSize: new google.maps.Size(30, 30)
+}
+
+var map,
+    currentPositionMarker,
+    mapCenter = new google.maps.LatLng(41.8762180, -87.6531470),
+    map;
+
+// change the zoom if you want
+function initializeMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: mapCenter,
+    draggable: false,
+    zoom: 15,
+    minZoom: 15,
+    streetViewControl: false,
+    clickableIcons: false
+  });
+}
+
+function locError(error) {
+  // tell the user if the current position could not be located
+  alert("Unable to geolocate. Please enable location settings to use SoundTreks.");
+}
+
+// current position of the user
+function setCurrentPosition(pos) {
+  currentPositionMarker = new google.maps.Marker({
+    map: map,
+    position: new google.maps.LatLng(
+        pos.coords.latitude,
+        pos.coords.longitude
+    ),
+    icon: userIcon,
+    title: "Current Position"
+  });
+  map.panTo(new google.maps.LatLng(
+      pos.coords.latitude,
+      pos.coords.longitude
+  ));
+}
+
+function displayAndWatch(position) {
+  // set current position
+  setCurrentPosition(position);
+
+  // watch position
+  watchCurrentPosition();
+}
+
+function watchCurrentPosition() {
+  var positionTimer = navigator.geolocation.watchPosition(
+    function (position) {
+      setMarkerPosition(
+        currentPositionMarker,
+        position
+      ),
+    locError,
+    geolocationOptions
+  });
+  // getSoundTreks(map, position);
+}
+
+function setMarkerPosition(marker, position) {
+  marker.setPosition(
+    new google.maps.LatLng(
+      position.coords.latitude,
+      position.coords.longitude)
+  );
+}
+
+var geolocationOptions = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function initLocationProcedure() {
+  initializeMap();
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(displayAndWatch, locError, geolocationOptions);
+  } else {
+    // tell the user if a browser doesn't support this amazing API
+    alert("Your browser does not support geolocation.");
+  }
+}
+
+// function getSoundTreks(map, position){
+//  $.ajax({
+//    url: '/sound_treks',
+//    type: 'GET',
+//    data: {lat: position.coords.latitude, lng: position.coords.longitude} // user's current position sent to server
+//  })
+//  .done(function(response) {
+//     var allMarkers = [];
+//     for (var i = 0; i < response.length; i++){
+//       var marker = new google.maps.Marker({
+//         position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+//         icon: soundTrekIcon,
+//         map: map,
+//         soundtrekId: response[i].id
+//       });
+//        allMarkers.push(marker);
+//     }
+//     for (var x = 0; x < allMarkers.length; x++){
+//       getMarker(allMarkers[x]);
+//     }
+//   });
+// }
+
+// function getCurrentLocation() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(createNewSoundTrek, locError, geolocationOptions)
+//   }
+// }
+
+// function createNewSoundTrek(position) {
+//   var latitude = position.coords.latitude
+//   var longitude = position.coords.longitude
+
+//   $("#new-sound-trek-container").on("submit", "#new-sound-trek-form", function(event) {
+//     event.preventDefault();
+
+//     var title = $(this).find($("#sound_trek_title")).val();
+//     var description = $(this).find($("#sound_trek_description")).val();
+//     var playlist = $(this).find($("#sound_trek_playlist")).val();
+//     var trekker_id = $(this).find($("#sound_trek_trekker_id")).val();
+
+//     $.ajax({
+//       url: '/sound_treks',
+//       type: 'POST',
+//       data: {sound_trek:{title: title, description: description, playlist: playlist, trekker_id: trekker_id, latitude: latitude, longitude: longitude}}
+//     })
+//     .done(function(response) {
+//       console.log("success");
+//       window.location.href = "/sound_treks/" + response
+//     })
+//     .fail(function() {
+//       $("#new-sound-trek-container").html("<div id='not-logged-in'>SoundTrek not created!<div>");
+//       console.log("error");
+//     })
+//     .always(function() {
+//       console.log("complete");
+//     });
+//   })
+// }
