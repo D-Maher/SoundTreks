@@ -44,7 +44,7 @@
 
             <% if current_user %>
 
-            <li><%= link_to current_user.uid, user_path(current_user.id) %></li>
+            <li><%= link_to current_user.nick_name, user_path(current_user.id) %></li>
             <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
 
 
