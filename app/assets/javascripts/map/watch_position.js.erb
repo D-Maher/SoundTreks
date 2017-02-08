@@ -49,13 +49,15 @@ function setCurrentPosition(pos) {
   ));
 }
 
-function displayAndWatch(position) {
+function enableSoundTrekFunctions(position) {
   // set current position
   setCurrentPosition(position);
   // watch position
   watchCurrentPosition();
   // get position for users on nonmobile devices
   staticCurrentPosition(position);
+  // function that adds event listener to submission of soundtrek form
+  createNewSoundTrek(position);
 }
 
 // function to render SoundTreks on mobile devices
@@ -95,7 +97,7 @@ var geolocationOptions = {
 function initLocationProcedure() {
   initializeMap();
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(displayAndWatch, locError, geolocationOptions);
+    navigator.geolocation.getCurrentPosition(enableSoundTrekFunctions, locError, geolocationOptions);
   } else {
     alert("Your browser does not support geolocation.");
   }
@@ -138,39 +140,44 @@ function clickMarker(marker) {
   })
 }
 
-// function getCurrentLocation() {
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(createNewSoundTrek, locError, geolocationOptions)
-//   }
-// }
+function getNewSoundTrekForm() {
+  $('#create-sound-trek').on("click", function(event) {
+    event.preventDefault();
+    $(this).hide();
+    $.ajax({
+      url: 'sound_treks/new',
+      type: 'GET',
+    })
+    .done(function(response) {
+      $("#new-sound-trek-container").html(response);
+    });
+  })
+}
 
-// function createNewSoundTrek(position) {
-//   var latitude = position.coords.latitude
-//   var longitude = position.coords.longitude
+function createNewSoundTrek(position) {
+  var latitude = position.coords.latitude
+  var longitude = position.coords.longitude
 
-//   $("#new-sound-trek-container").on("submit", "#new-sound-trek-form", function(event) {
-//     event.preventDefault();
+  $("#new-sound-trek-container").on("submit", "#new-sound-trek-form", function(event) {
+    event.preventDefault();
 
-//     var title = $(this).find($("#sound_trek_title")).val();
-//     var description = $(this).find($("#sound_trek_description")).val();
-//     var playlist = $(this).find($("#sound_trek_playlist")).val();
-//     var trekker_id = $(this).find($("#sound_trek_trekker_id")).val();
+    var title = $(this).find($("#sound_trek_title")).val();
+    var description = $(this).find($("#sound_trek_description")).val();
+    var playlist = $(this).find($("#sound_trek_playlist")).val();
+    var trekker_id = $(this).find($("#sound_trek_trekker_id")).val();
 
-//     $.ajax({
-//       url: '/sound_treks',
-//       type: 'POST',
-//       data: {sound_trek:{title: title, description: description, playlist: playlist, trekker_id: trekker_id, latitude: latitude, longitude: longitude}}
-//     })
-//     .done(function(response) {
-//       console.log("success");
-//       window.location.href = "/sound_treks/" + response
-//     })
-//     .fail(function() {
-//       $("#new-sound-trek-container").html("<div id='not-logged-in'>SoundTrek not created!<div>");
-//       console.log("error");
-//     })
-//     .always(function() {
-//       console.log("complete");
-//     });
-//   })
-// }
+    $.ajax({
+      url: '/sound_treks',
+      type: 'POST',
+      data: {sound_trek:{title: title, description: description, playlist: playlist, trekker_id: trekker_id, latitude: latitude, longitude: longitude}}
+    })
+    .done(function(response) {
+      console.log("success");
+      window.location.href = "/sound_treks/" + response
+    })
+    .fail(function() {
+      $("#new-sound-trek-container").html("<div id='not-logged-in'>SoundTrek not created!<div>");
+      console.log("error");
+    });
+  });
+};

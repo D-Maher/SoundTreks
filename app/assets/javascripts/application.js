@@ -15,14 +15,7 @@
 //= require_tree ../../../vendor/assets/javascripts/
 //= require_tree .
 
-
-
 $(function() {
-
   initLocationProcedure();
-
-
-  // centerMapOnCurrentLocation();
-  // getNewSoundTrekForm();
-  // getCurrentLocation();
+  getNewSoundTrekForm();
 });
