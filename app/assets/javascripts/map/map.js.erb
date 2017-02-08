@@ -13,7 +13,7 @@ var userIcon = {
 }
 
 function centerMapOnCurrentLocation() {
-  navigator.geolocation.getCurrentPosition(initMap, error, options)
+  navigator.geolocation.getCurrentPosition(initMap, error, geolocationOptions)
   window.setInterval(centerMapOnCurrentLocation, 60000)
 }
 
