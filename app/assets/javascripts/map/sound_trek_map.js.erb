@@ -9,6 +9,19 @@ var soundTrekIcon = {
   scaledSize: new google.maps.Size(30, 30)
 }
 
+function createUserRadius(map, position) {
+  var userRadius = new google.maps.Circle({
+    map: map,
+    radius: 500, // could be made toggleable
+    center: {lat: position.coords.latitude, lng: position.coords.longitude},
+    strokeColor: '#1dbdd6',
+    strokeOpacity: 0.5,
+    strokeWeight: 0.5,
+    fillColor: '#1dbdd6',
+    fillOpacity: 0.15
+  })
+}
+
 var map,
     currentPositionMarker,
     mapCenter = new google.maps.LatLng(41.8762180, -87.6531470),
@@ -19,11 +32,11 @@ function initializeMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: mapCenter,
-    draggable: false,
     zoom: 15,
     minZoom: 15,
     streetViewControl: false,
-    clickableIcons: false
+    clickableIcons: false,
+    gestureHandling: "greedy"
   });
 }
 
@@ -33,20 +46,21 @@ function locError(error) {
 }
 
 // current position of the user
-function setCurrentPosition(pos) {
+function setCurrentPosition(position) {
   currentPositionMarker = new google.maps.Marker({
     map: map,
     position: new google.maps.LatLng(
-        pos.coords.latitude,
-        pos.coords.longitude
+        position.coords.latitude,
+        position.coords.longitude
     ),
     icon: userIcon,
     title: "Current Position"
   });
   map.panTo(new google.maps.LatLng(
-      pos.coords.latitude,
-      pos.coords.longitude
+      position.coords.latitude,
+      position.coords.longitude
   ));
+  createUserRadius(map, position);
 }
 
 function enableSoundTrekFunctions(position) {
