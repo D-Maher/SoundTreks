@@ -14,21 +14,25 @@ var userIcon = {
 
 function centerMapOnCurrentLocation() {
   navigator.geolocation.getCurrentPosition(initMap, error, options)
-
   window.setInterval(centerMapOnCurrentLocation, 60000)
 }
 
 // remember to handle errors
 function getCurrentLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(createNewSoundTrek, error, options)
+    navigator.geolocation.getCurrentPosition(createNewSoundTrek, error, geolocationOptions)
   }
 }
 
 function initMap(location) {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: location.coords.latitude, lng: location.coords.longitude},
-    zoom: 15
+    draggable: false,
+    zoom: 15,
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    streetViewControl: false
   });
   createUserMarker(map, location);
   createUserRadius(map, location);
@@ -39,7 +43,7 @@ function error(err) {
   alert("Unable to geolocate. Please enable location settings to use SoundTreks.");
 };
 
-var options = {
+var geolocationOptions = {
   enableHighAccuracy: true,
   timeout: 5000,
   maximumAge: 0
