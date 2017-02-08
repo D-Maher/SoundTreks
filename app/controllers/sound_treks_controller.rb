@@ -16,7 +16,7 @@ class SoundTreksController < ApplicationController
       playlist = RSpotify::Playlist.find(creator.spotify_id, sound_trek.playlist)
       base_url = "https://embed.spotify.com/?uri=spotify:user:#{creator.spotify_id}:playlist:#{playlist.id}"
       respond_to do |format|
-        format.json { render layout: false, json: {:base_url => base_url }}
+        format.json { render layout: false, json: {:base_url => base_url, :sound_trek_id => sound_trek.id }}
       end
     else
       if logged_in?
