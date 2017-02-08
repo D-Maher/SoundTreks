@@ -15,28 +15,8 @@
 //= require_tree ../../../vendor/assets/javascripts/
 //= require_tree .
 
-$(document).ready(function(){
-  $("#get-playlists").on("click", function(){
-    event.preventDefault();
-
-    getTracks();
-  })
-
-  function getTracks(){
-    $.ajax({
-      url: "/playlists/show",
-      method: "GET",
-    })
-    .done(function(response){
-      console.log(response)
-      $(".playlist").html("<iframe src=" + "" + response.base_url + " " + "width=300 height=380 frameborder=0></iframe>")
-    })
-  }
-})
-
 $(function() {
-  centerMapOnCurrentLocation();
+  initLocationProcedure();
   getNewSoundTrekForm();
-  getCurrentLocation();
   showEditNickNameForm();
 });
