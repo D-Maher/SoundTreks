@@ -16,7 +16,10 @@
 //= require_tree .
 
 $(function() {
-  initLocationProcedure();
+  if ($('#map').length > 0) {
+    initLocationProcedure();
+  }
+
   getNewSoundTrekForm();
   showEditNickNameForm();
 });

@@ -1,12 +1,12 @@
 var userIcon = {
   url: "<%= asset_path('user_marker.png') %>",
-  scaledSize: new google.maps.Size(15, 15),
-  anchor: new google.maps.Point(8, 7)
+  scaledSize: new google.maps.Size(25, 25),
+  anchor: new google.maps.Point(13, 11)
 }
 
 var soundTrekIcon = {
   url: "<%= asset_path('sound_trek_marker.png') %>",
-  scaledSize: new google.maps.Size(30, 30)
+  scaledSize: new google.maps.Size(45, 45)
 }
 
 var map,
@@ -32,8 +32,8 @@ function createUserRadius(map, position) {
 function initializeMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: mapCenter,
-    zoom: 15,
-    minZoom: 15,
+    zoom: 16,
+    minZoom: 16,
     streetViewControl: false,
     clickableIcons: false,
     gestureHandling: "greedy"
@@ -62,7 +62,8 @@ function setCurrentPosition(position) {
         position.coords.longitude
     ),
     icon: userIcon,
-    title: "Current Position"
+    title: "Current Position",
+    zIndex: 9999999
   });
   map.panTo(new google.maps.LatLng(
       position.coords.latitude,
@@ -166,12 +167,12 @@ function clickMarker(marker) {
 function getNewSoundTrekForm() {
   $('#create-sound-trek').on("click", function(event) {
     event.preventDefault();
-    $(this).hide();
     $.ajax({
       url: 'sound_treks/new',
       type: 'GET',
     })
     .done(function(response) {
+      $('#create-sound-trek-button-container').hide();
       $("#new-sound-trek-container").html(response);
     });
   })
