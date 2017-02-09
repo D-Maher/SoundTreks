@@ -166,12 +166,12 @@ function clickMarker(marker) {
 function getNewSoundTrekForm() {
   $('#create-sound-trek').on("click", function(event) {
     event.preventDefault();
-    $(this).hide();
     $.ajax({
       url: 'sound_treks/new',
       type: 'GET',
     })
     .done(function(response) {
+      $('#create-sound-trek-button-container').hide();
       $("#new-sound-trek-container").html(response);
     });
   })
