@@ -10,10 +10,10 @@ class SoundTreksController < ApplicationController
 
   def show
     if request.xhr?
-      RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+      rspotify_authenticate
       sound_trek = SoundTrek.find_by(:id => params[:soundtrekId].to_i)
       creator = sound_trek.trekker
-      playlist = RSpotify::Playlist.find(creator.spotify_id, sound_trek.playlist)
+      playlist = find_playlist(creator.spotify_id, sound_trek.playlist)
       base_url = "https://embed.spotify.com/?uri=spotify:user:#{creator.spotify_id}:playlist:#{playlist.id}"
       respond_to do |format|
         format.json { render layout: false, json: {:base_url => base_url, :sound_trek_id => sound_trek.id }}
@@ -23,12 +23,11 @@ class SoundTreksController < ApplicationController
         matched_playlist = Array.new
         @rating = Rating.new
         @sound_trek = SoundTrek.find(params[:id])
-        RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+        rspotify_authenticate
         user = User.find_by(:id => session[:user_id])
-        spotify_user = RSpotify::User.find(user.spotify_id)
+        spotify_user = find_spotify_user(user.spotify_id)
         @creator = @sound_trek.trekker
-        @playlist = RSpotify::Playlist.find(@creator.spotify_id, @sound_trek.playlist)
-        base_url = "https://embed.spotify.com/?uri=spotify:user:#{@creator.spotify_id}:playlist:#{@playlist.id}"
+        @playlist = find_playlist(@creator.spotify_id, @sound_trek.playlist)
         @sound_trek
       else
         flash[:no_show_access] = "You must be logged in to view SoundTreks."
@@ -39,9 +38,9 @@ class SoundTreksController < ApplicationController
 
   def new
     @playlists = Array.new
-    RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+    rspotify_authenticate
     user = User.find_by(:id => session[:user_id])
-    spotify_user = RSpotify::User.find(user.spotify_id)
+    spotify_user = find_spotify_user(user.spotify_id)
     spotify_user.playlists.each do |playlist|
       if playlist.uri.match(/\b#{user.spotify_id}\b/) != nil
         @playlists << playlist
@@ -56,9 +55,9 @@ class SoundTreksController < ApplicationController
 
   def edit
     @playlists = Array.new
-    RSpotify.authenticate(ENV['spotify_id'], ENV['spotify_secret'])
+    rspotify_authenticate
     user = User.find_by(:id => session[:user_id])
-    spotify_user = RSpotify::User.find(user.spotify_id)
+    spotify_user = find_spotify_user(user.spotify_id)
     spotify_user.playlists.each do |playlist|
     if playlist.uri.match(/\b#{user.spotify_id}\b/) != nil
         @playlists << playlist
