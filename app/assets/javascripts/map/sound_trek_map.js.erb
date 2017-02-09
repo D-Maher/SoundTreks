@@ -1,12 +1,12 @@
 var userIcon = {
   url: "<%= asset_path('user_marker.png') %>",
-  scaledSize: new google.maps.Size(20, 20),
-  anchor: new google.maps.Point(13, 11)
+  scaledSize: new google.maps.Size(17, 17),
+  anchor: new google.maps.Point(8, 9)
 }
 
 var soundTrekIcon = {
   url: "<%= asset_path('sound_trek_marker.png') %>",
-  scaledSize: new google.maps.Size(45, 45)
+  scaledSize: new google.maps.Size(30, 30)
 }
 
 var map,
@@ -31,8 +31,8 @@ function createUserRadius(map, position) {
 function initializeMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: mapCenter,
-    zoom: 14,
-    minZoom: 13,
+    zoom: 15,
+    minZoom: 15,
     streetViewControl: false,
     clickableIcons: false,
     gestureHandling: "greedy"
