@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   def show
-    @user = User.find(params[:id])
+    if logged_in? && current_user.id == params[:id]
+      @user = User.find(params[:id])
+    else
+      redirect_to "/"
+    end
   end
 
   def edit
@@ -11,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    p params[:name]
     if request.xhr?
       user = User.find_by(:id => session[:user_id])
       user.update_attributes(:nick_name => params[:name])
