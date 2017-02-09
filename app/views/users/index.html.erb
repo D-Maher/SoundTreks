@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,6 +22,8 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Muli">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -34,16 +35,19 @@
 
     <div class="container">
 
-        <form class="form-signin" action="/auth/spotify" method="GET">
-          <h1 text-align="center" class="form-signin-heading text-muted">SoundTreks</h1>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <h1 id="start-header" text-align="center" class="form-signin-heading text-muted">SoundTreks</h1>
+
+        <p id="tag-line">Soundtracks for your adventures.</p>
+
+        <img id="start-logo" class="center-block" src="sound_trek_marker.png">
+
+        <form id="start-form" class="form-signin" action="/auth/spotify" method="GET">
+          <button id="start-login-button" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
 
           <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </form>
 
+
     </div>
-
-
-    <%= yield %>
   </body>
-</html>
+

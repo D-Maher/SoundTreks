@@ -88,3 +88,28 @@ html, body {
   font-size: 1.25em;
 /*  font-weight: 1000;
 */}
+
+img#start-logo {
+  margin-top: 25%;
+  width: 45%;
+}
+
+h1#start-header {
+  margin-top: 20%;
+  font-size: 4em;
+  font-weight: 1000;
+}
+
+button#start-login-button {
+  margin-bottom: 3%;
+}
+
+form#start-form {
+  margin-top: 25%;
+}
+
+p#tag-line {
+  text-align: center;
+  font-style: italic;
+}
+

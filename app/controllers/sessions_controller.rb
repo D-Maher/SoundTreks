@@ -12,7 +12,7 @@ include SessionsHelper
   def destroy
     session[:user_id] = nil
     session[:omniauth] = nil
-    redirect_to root_url, notice: "SIGNED OUT"
+    redirect_to users_path, notice: "SIGNED OUT"
   end
 
 end
