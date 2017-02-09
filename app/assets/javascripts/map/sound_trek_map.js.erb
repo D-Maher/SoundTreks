@@ -147,7 +147,10 @@ function getSoundTreks(map, position){
       clickMarker(allMarkers[x]);
     }
 
-    $('#sound-treks-area').html("There are " + response.area.length + " SoundTreks within five miles of you. Get out there and find them!");
+    var nearbySoundTrekCount = response.nearby.length
+    var additionalSoundTrekCount = (response.area.length - response.nearby.length)
+
+    $('#sound-treks-area').html("There are " + nearbySoundTrekCount + " SoundTreks within your search radius and " + additionalSoundTrekCount + " more SoundTreks within 5 miles of you. Get out there and find them!");
   });
 }
 
