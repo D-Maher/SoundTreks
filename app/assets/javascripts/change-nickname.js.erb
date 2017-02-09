@@ -31,7 +31,7 @@ function updateUserNickname(userID) {
       data: formData
     })
     .done(function(response){
-      $("#welcome-message").text("Welcome, " + response.name + "!")
+      $("#profile-name").text(response.name + "'s Profile")
       $("#new-nickname").hide();
       $(".edit-nickname").show();
     })
