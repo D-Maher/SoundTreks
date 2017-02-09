@@ -13,16 +13,11 @@
  *= require_tree .
  *= require_self
  */
-/*.nav {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -100px;
-}*/
+
 html, body {
   height: 100%;
   background-color: #D9D9D9;
+  font-family: 'Muli', sans-serif;
 }
 
 .btn {
@@ -80,3 +75,11 @@ html, body {
   padding: 7px 7px;
 }
 
+#welcome-message {
+  margin-bottom: 20px;
+}
+
+#welcome-message, h2 {
+  font-size: 1.25em;
+/*  font-weight: 1000;
+*/}
