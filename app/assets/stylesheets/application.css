@@ -80,3 +80,10 @@ html, body {
   padding: 7px 7px;
 }
 
+#welcome-message {
+  margin-bottom: 20px;
+}
+
+#welcome-message, h2 {
+  font-size: 1.25em;
+}
