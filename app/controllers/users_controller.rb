@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-    if logged_in? && current_user.id == params[:id]
+    if logged_in? && current_user.id == params[:id].to_i
       @user = User.find(params[:id])
     else
       redirect_to "/"
