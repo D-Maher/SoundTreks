@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
-root 'sound_treks#index'
+  root 'sound_treks#index'
 
-get 'session/index'
+  get 'session/index'
 
-resources :sound_treks do
-  resources :ratings, only: [:create, :update]
-end
+  resources :sound_treks do
+    resources :ratings, only: [:create, :update]
+  end
 
-get 'auth/:provider/callback', to: "sessions#create"
-delete 'sign_out', to: "sessions#destroy", as: 'sign_out'
+  get 'auth/:provider/callback', to: "sessions#create"
+  delete 'sign_out', to: "sessions#destroy", as: 'sign_out'
 
-resources :users
-
-resources :playlists, only: [:new, :create, :show]
-
+  resources :users
 end
