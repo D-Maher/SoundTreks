@@ -1,19 +1,27 @@
 <div class="text-center">
-  <h3>Explore Trekker</h3>
+  <% if logged_in? %>
+    <h2>Happy Trekking, <%= current_user.nick_name %>!</h2>
+  <% else %>
+    <h2>Happy Trekking!</h2>
+  <% end %>
 </div>
-<div class="center-block" id="map"></div>
+<div class="center-block" id="map">
+
+</div>
 
 <div class="show-soundtrek-flash-message"><%= flash[:no_show_access] %></div><br>
 
 <div class="show-soundtrek-flash-message"><%= flash[:no_access_create] %></div><br>
 
 <% if logged_in? %>
-  <div>
-    <div id="geolocate-errors" "create-soundtrek-button" class="errors"></div>
+  <div id="geolocate-errors" class="errors"></div>
+  <div id="create-sound-trek-button-container">
      <button type="button" class="new-sound-trek btn btn-primary btn-lg black-background btn-block"><%= link_to "Create SoundTrek", "sound_treks#new", id: "create-sound-trek", :class => "new-link" %></button>
   </div>
 <% end %>
 
 <div class="text-center" id="new-sound-trek-container">
+
 </div>
+
 

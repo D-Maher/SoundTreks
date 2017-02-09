@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= favicon_link_tag "sound_trek_marker.png", rel: "sound-treks-icon", type: "image/png" %>
+    <link rel="icon" href="sound_trek_marker.png" type="image/png"/>
 
     <title>SoundTreks</title>
 
@@ -11,7 +11,6 @@
 
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <!-- Latest compiled and minified CSS -->
@@ -22,6 +21,11 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
   </head>
 
   <body>
@@ -47,22 +51,14 @@
 
             <% else %>
 
-            <li><%= link_to "Login", "/auth/spotify" %></li>
+            <li><%= link_to "Learn More", about_index_path %></li>
+            <li><%= link_to "Log In", "/auth/spotify" %></li>
 
           <% end %>
           </ul>
         </div>
       </div>
     </div>
-
-
-
-    <div class="playlist">
-      <div class="loader">
-        <div class="inner-circle"></div>
-      </div>
-    </div>
-
 
     <%= yield %>
   </body>

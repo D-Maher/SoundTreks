@@ -1,9 +1,17 @@
-<h2><%= @sound_trek.title %></h2>
-<h3>Created by: <%= @sound_trek.trekker.nick_name %></h3>
 
-<h4>Created on: <%= @sound_trek.created_at.strftime("%-m/%-d/%Y") %></h4>
+<h2 class="show-title show-data"><%= @sound_trek.title %></h2>
+<h3 class="show-nickname show-data">Created by: <%= @sound_trek.trekker.nick_name %></h3>
 
-<h4>Dropped at: <%= @sound_trek.address %></h4>
+<h4 class="show-date show-data">Created on: <%= @sound_trek.created_at.strftime("%-m/%-d/%Y") %></h4>
+
+<h4 class="show-address show-data">Dropped at: <%= @sound_trek.address %></h4>
+
+<div class="playlist show-data"
+<h3>Playlist</h3>
+  <div class="playlist-show">
+    <iframe src="https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>" width="300" height="380" frameborder="0"></iframe>
+  </div>
+</div>
 
 <div class="show-soundtrek-flash-message"><%= flash[:no_access_delete] %></div><br>
 <div class="show-soundtrek-flash-message"><%= flash[:no_access_edit] %></div><br>
@@ -33,8 +41,8 @@
     <p>You have given this SoundTrek a rating of <%= @sound_trek.ratings.find_by(trekker_id: current_user.id).stars %> stars.</p><br>
     <p>Change your rating?</p>
     <%= form_for @rating, url: sound_trek_rating_path(@sound_trek), method: :put do |f| %>
-    <p><%= f.select :stars, options_for_select([['1 star', 1.00], ['2 stars', 2.00], ['3 stars', 3.00], ['4 stars', 4.00], ['5 stars', 5.00]]) %></p><br>
-    <%= f.submit "Update Rating" %>
+    <p><%= f.select :stars, options_for_select([['1 star', 1.00], ['2 stars', 2.00], ['3 stars', 3.00], ['4 stars', 4.00], ['5 stars', 5.00]]), class: 'form-control'%></p><br>
+    <%= f.submit "Update Rating", class: 'form-control' %>
     <% end %>
   <% end %>
 </div><br>
@@ -42,10 +50,6 @@
 <h3>Description</h3>
   <div><%= @sound_trek.description %></div><br>
 
-<h3>Playlist</h3>
-  <div class="playlist-show">
-    <iframe src="https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>" width="300" height="380" frameborder="0"></iframe>
-  </div>
 
 <% if sound_trek_owner?(@sound_trek) %>
 <h3>Edit</h3>
@@ -56,3 +60,4 @@
                             data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>
+
