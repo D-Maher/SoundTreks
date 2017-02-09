@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    render 'users/index', layout: false
+  end
+
   def show
     if logged_in? && current_user.id == params[:id].to_i
       @user = User.find(params[:id])

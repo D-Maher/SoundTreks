@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -29,36 +30,19 @@
   </head>
 
   <body>
+    <div/>
 
-    <div class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <a href="/sound_treks" class="navbar-brand">SoundTreks</a>
+    <div class="container">
 
-        <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+        <form class="form-signin" action="/auth/spotify" method="GET">
+          <h1 text-align="center" class="form-signin-heading text-muted">SoundTreks</h1>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 
-        <div class="collapse navbar-collapse navHeaderCollapse">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
 
-          <ul class="nav navbar-nav navbar-right">
-
-            <% if current_user %>
-
-            <li><%= link_to current_user.nick_name, user_path(current_user.id) %></li>
-            <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
-
-            <% else %>
-
-            <li><%= link_to "Learn More", about_index_path %></li>
-            <li><%= link_to "Log In", "/auth/spotify" %></li>
-
-          <% end %>
-          </ul>
-        </div>
-      </div>
     </div>
+
 
     <%= yield %>
   </body>
