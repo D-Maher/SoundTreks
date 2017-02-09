@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'sound_treks#index'
+  # root 'sound_treks#index'
+  root 'users#index'
 
   get 'session/index'
 
