@@ -1,13 +1,12 @@
-<div class="text-center">
+<div id="welcome-message" class="text-center">
   <% if logged_in? %>
-    <h2>Happy Trekking, <%= current_user.nick_name %>!</h2>
+    <h2>Happy Trekking, <%= current_user.nick_name %></h2>
   <% else %>
-    <h2>Happy Trekking!</h2>
+    <h2>Happy Trekking</h2>
   <% end %>
 </div>
-<div class="center-block" id="map">
 
-</div>
+<div class="center-block" id="map"></div>
 
 <div class="show-soundtrek-flash-message"><%= flash[:no_show_access] %></div><br>
 

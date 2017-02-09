@@ -1,12 +1,12 @@
 var userIcon = {
   url: "<%= asset_path('user_marker.png') %>",
-  scaledSize: new google.maps.Size(25, 25),
-  anchor: new google.maps.Point(13, 11)
+  scaledSize: new google.maps.Size(17, 17),
+  anchor: new google.maps.Point(8, 9)
 }
 
 var soundTrekIcon = {
   url: "<%= asset_path('sound_trek_marker.png') %>",
-  scaledSize: new google.maps.Size(45, 45)
+  scaledSize: new google.maps.Size(30, 30)
 }
 
 var map,
@@ -18,7 +18,7 @@ var map,
 function createUserRadius(map, position) {
   var userRadius = new google.maps.Circle({
     map: map,
-    radius: 500, // could be made toggleable
+    radius: 500,
     center: {lat: position.coords.latitude, lng: position.coords.longitude},
     strokeColor: '#1dbdd6',
     strokeOpacity: 0.5,
@@ -28,7 +28,6 @@ function createUserRadius(map, position) {
   })
 }
 
-// change the zoom if you want
 function initializeMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: mapCenter,
