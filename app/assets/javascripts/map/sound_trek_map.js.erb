@@ -1,6 +1,6 @@
 var userIcon = {
   url: "<%= asset_path('user_marker.png') %>",
-  scaledSize: new google.maps.Size(25, 25),
+  scaledSize: new google.maps.Size(20, 20),
   anchor: new google.maps.Point(13, 11)
 }
 
@@ -69,7 +69,7 @@ function setCurrentPosition(position) {
       position.coords.longitude
   ));
   userCenter = currentPositionMarker.position;
-  createUserRadius(map, userCenter);
+  createUserRadius(map, position);
 }
 
 function enableSoundTrekFunctions(position) {
