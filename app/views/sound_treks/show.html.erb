@@ -47,12 +47,12 @@
     <iframe src="https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>" width="300" height="380" frameborder="0"></iframe>
   </div>
 
+<% if sound_trek_owner?(@sound_trek) %>
 <h3>Edit</h3>
   <div id="edit-delete-soundtreks">
-    <% if sound_trek_owner?(@sound_trek) %>
       <%= link_to "Edit", edit_sound_trek_path(@sound_trek.id) %><br>
       <%= link_to 'Delete', sound_trek_path(@sound_trek.id),
                             method: :delete,
                             data: { confirm: 'Are you sure?' } %>
-    <% end %>
   </div>
+<% end %>
