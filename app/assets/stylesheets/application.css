@@ -70,3 +70,13 @@ html, body {
   .text-align: center;
 }
 
+.edit {
+  font-size: 10px;
+  padding: 7px 7px;
+}
+
+.update {
+  font-size: 10px;
+  padding: 7px 7px;
+}
+
