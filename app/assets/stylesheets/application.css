@@ -49,15 +49,15 @@ html, body {
 .edit-nickname {
   position: relative;
   bottom: 50px;
-  background-color: black;
+  /*background-color: black;*/
 }
 
 .new {
   max-width:180px;
   padding:15px;
   bottom: 350px;
-  background-color: black;
-}
+/*  background-color: black;
+*/}
 
 .show-data {
   text-align: center;
@@ -79,7 +79,7 @@ html, body {
   color: #fcfbf7;
 }
 
-.navbar-inverse .navbar-toggle {
+.navbar-inverse .navbar-toggle  {
   border-color: #fcfbf7;
 }
 
@@ -88,7 +88,7 @@ html, body {
 }
 
 .navbar-inverse .navbar-toggle span .icone-bar :active:focus {
-  color: white;
+  color: white  !important;
   box-shadow: none;
   border-color: white;
   background-color: white;
@@ -150,6 +150,14 @@ form#start-form {
 
 button#start-login-button {
   margin-bottom: 3%;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  background-color: #1FAB89 !important;
+}
+
+.btn-primary:focus, .btn-primary:hover {
+  background-color: #1FAB89 !important;
 }
 
 h1#show-trek-title{
