@@ -126,8 +126,7 @@ html, body {
 
 #welcome-message, h2 {
   font-size: 1.25em;
-/*  font-weight: 1000;
-*/}
+}
 
 h1#start-header {
   margin-top: 15%;
@@ -153,5 +152,25 @@ button#start-login-button {
   margin-bottom: 3%;
 }
 
+h1#show-trek-title{
+  font-size: 2em;
+  font-weight: 900;
+}
 
+h2#show-trek-nick-name{
+  font-size: 1em;
+  font-weight: 900;
+  text-align: left;
+}
 
+h3#show-trek-address{
+  font-size: 1em;
+  font-weight: 900;
+  text-align: left;
+}
+
+h4#show-trek-created-at{
+  font-size: 1em;
+  font-weight: 900;
+  text-align: left;
+}

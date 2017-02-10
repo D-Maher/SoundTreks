@@ -1,13 +1,9 @@
-
-<h2 class="show-title show-data"><%= @sound_trek.title %></h2>
-<h3 class="show-nickname show-data">Created by: <%= @sound_trek.trekker.nick_name %></h3>
-
-<h4 class="show-date show-data">Created on: <%= @sound_trek.created_at.strftime("%-m/%-d/%Y") %></h4>
-
-<h4 class="show-address show-data">Dropped at: <%= @sound_trek.address %></h4>
+<h1 id="show-trek-title" class="show-title show-data"><%= @sound_trek.title %></h1>
+<h2 id="show-trek-nick-name" class="show-nickname show-data">Created by <%= @sound_trek.trekker.nick_name %></h2>
+<h3 id="show-trek-address" class="show-address show-data">Dropped at <%= @sound_trek.address %></h3>
+<h4 id="show-trek-created-at" class="show-date show-data">Created on <%= @sound_trek.created_at.strftime("%-m/%-d/%Y") %></h4>
 
 <div class="playlist show-data"
-<h3>Playlist</h3>
   <div class="playlist-show">
     <iframe src="https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>" width="300" height="380" frameborder="0"></iframe>
   </div>
@@ -23,7 +19,6 @@
     <div><%= @sound_trek.average_rating %> stars<br>
     <%= @sound_trek.num_of_ratings %> ratings</div>
   <% end %><br>
-
 
 <div id="rate-soundtrek">
   <div class="show-soundtrek-flash-message"><%= flash[:rating_notice] %></div><br>
@@ -47,12 +42,11 @@
   <% end %>
 </div><br>
 
-<h3>Description</h3>
+<h3 id="show-sound-trek-description">Description</h3>
   <div><%= @sound_trek.description %></div><br>
 
 
 <% if sound_trek_owner?(@sound_trek) %>
-<h3>Edit</h3>
   <div id="edit-delete-soundtreks">
       <%= link_to "Edit", edit_sound_trek_path(@sound_trek.id) %><br>
       <%= link_to 'Delete', sound_trek_path(@sound_trek.id),
