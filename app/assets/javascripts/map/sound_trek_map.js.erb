@@ -133,18 +133,18 @@ function getSoundTreks(map, position){
    data: {lat: position.coords.latitude, lng: position.coords.longitude} // user's current position sent to server
  })
  .done(function(response) {
-    var allMarkers = [];
-    for (var i = 0; i < response.length; i++){
+    var nearbySoundTreks = [];
+    for (var i = 0; i < response.nearby.length; i++){
       var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(response[i].latitude, response[i].longitude),
+        position: new google.maps.LatLng(response.nearby[i].latitude, response.nearby[i].longitude),
         icon: soundTrekIcon,
         map: map,
-        soundtrekId: response[i].id
+        soundtrekId: response.nearby[i].id
       });
-       allMarkers.push(marker);
+       nearbySoundTreks.push(marker);
     }
-    for (var x = 0; x < allMarkers.length; x++){
-      clickMarker(allMarkers[x]);
+    for (var x = 0; x < nearbySoundTreks.length; x++){
+      clickMarker(nearbySoundTreks[x]);
     }
 
     var nearbySoundTrekCount = response.nearby.length
