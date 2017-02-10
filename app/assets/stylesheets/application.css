@@ -191,8 +191,7 @@ h3#show-trek-created-at{
 }
 
 h3#show-trek-rating{
-  font-size: 1.5em;
-  font-weight: 900;
+tag-line-how-it-works  font-weight: 900;
   text-align: left;
   margin-left: 10%;
   margin-bottom: 5%;
@@ -239,4 +238,25 @@ div#edit-delete-buttons{
 div#rate-soundtrek, h4 form{
   margin-left: 10%;
   text-align: left;
+}
+
+.how-it-works{
+  margin-left: 10%;
+  text-align: left;
+  margin-right: 10%
+}
+
+p.how-it-works{
+  margin-bottom: 10%;
+}
+
+#tag-line-how-it-works{
+  font-size: 1.25em;
+  margin-top: 1%;
+  font-style: italic;
+  margin-bottom: 10%;
+}
+
+#how-it-works-main-header{
+  margin-top: 4%;
 }
