@@ -1,4 +1,5 @@
 <h1 id="show-trek-title" class="show-title show-data"><%= @sound_trek.title %></h1>
+
 <h2 id="show-trek-nick-name" class="show-nickname show-data">Created by <%= @sound_trek.trekker.nick_name %></h2>
 <h3 id="show-trek-address" class="show-address show-data">Dropped at <%= @sound_trek.address %></h3>
 <h3 id="show-trek-created-at" class="show-date show-data">Created on <%= @sound_trek.created_at.strftime("%-m/%-d/%Y") %></h3>
@@ -7,6 +8,19 @@
   <div class="playlist-show">
     <iframe src="https://embed.spotify.com/?uri=spotify:user:<%=@creator.spotify_id%>:playlist:<%=@playlist.id%>" width="300" height="380" frameborder="0"></iframe>
   </div>
+</div>
+
+<div id="edit-delete-buttons">
+  <% if sound_trek_owner?(@sound_trek) %>
+    <div id="edit-soundtreks">
+        <%= link_to "Edit SoundTrek", edit_sound_trek_path(@sound_trek.id) %><br>
+    </div>
+    <div id="delete-soundtreks">
+      <%= link_to "Delete SoundTrek", sound_trek_path(@sound_trek.id),
+                              method: :delete,
+                              data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
 </div>
 
 <div class="show-soundtrek-flash-message"><%= flash[:no_access_delete] %></div><br>
@@ -45,14 +59,5 @@
   <% end %>
 </div><br>
 
-<% if sound_trek_owner?(@sound_trek) %>
-  <div id="edit-soundtreks">
-      <%= link_to "Edit", edit_sound_trek_path(@sound_trek.id) %><br>
-  </div>
-  <div id="delete-soundtreks">
-    <%= link_to 'Delete', sound_trek_path(@sound_trek.id),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' } %>
-  </div>
-<% end %>
+
 
