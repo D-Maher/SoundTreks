@@ -126,8 +126,7 @@ html, body {
 
 #welcome-message, h2 {
   font-size: 1.25em;
-/*  font-weight: 1000;
-*/}
+}
 
 h1#start-header {
   margin-top: 15%;
@@ -161,6 +160,78 @@ button#start-login-button {
   background-color: #1FAB89 !important;
 }
 
+h1#show-trek-title{
+  font-size: 2em;
+  font-weight: 900;
+  margin-bottom: -2%;
+}
 
+h2#show-trek-nick-name{
+  font-size: 1em;
+  font-weight: 900;
+  text-align: left;
+  margin-left: 10%;
+  margin-bottom: -3%;
+}
 
+h3#show-trek-address{
+  font-size: 1em;
+  font-weight: 900;
+  text-align: left;
+  margin-left: 10%;
+  margin-bottom: -3%;
+}
 
+h3#show-trek-created-at{
+  font-size: 1em;
+  font-weight: 900;
+  text-align: left;
+  margin-left: 10%;
+  margin-bottom: 5%;
+}
+
+h3#show-trek-rating{
+  font-size: 1.5em;
+  font-weight: 900;
+  text-align: left;
+  margin-left: 10%;
+  margin-bottom: 5%;
+  margin-top: -4%;
+}
+
+div#trek-not-rated{
+  text-align: left;
+  margin-left: 10%;
+  margin-top: -3%;
+}
+
+h3#show-sound-trek-description{
+  text-align: left;
+  margin-left: 10%;
+  margin-top: -15%;
+}
+
+div#show-sound-trek-desc-text{
+  text-align: left;
+  margin-left: 10%;
+  margin-top: -2%;
+}
+
+div#edit-soundtreks{
+  display: inline-block;
+  margin-right: 10%;
+  font-weight: 900;
+  margin-top: 3%;
+}
+
+div#delete-soundtreks{
+  display: inline-block;
+  margin-left: 10%;
+  font-weight: 900;
+  margin-top: 3%;
+}
+
+div#edit-delete-buttons{
+  display: flex;
+  justify-content: center;
+}
