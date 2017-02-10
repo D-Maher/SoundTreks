@@ -22,7 +22,7 @@
 }*/
 html, body {
   height: 100%;
-  background-color: #D9D9D9;
+  background-color: #fcfbf7;
 }
 
 .btn {
@@ -54,12 +54,14 @@ html, body {
 .edit-nickname {
   position: relative;
   bottom: 50px;
+  background-color: black;
 }
 
 .new {
   max-width:180px;
   padding:15px;
   bottom: 350px;
+  background-color: black;
 }
 
 .show-data {
@@ -70,3 +72,40 @@ html, body {
   .text-align: center;
 }
 
+.navbar-inverse {
+  background-image: none;
+/*  background-color: #62D2A2;
+*/  background-color: #1FAB89;
+    border-color: #62D2A2
+
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #fcfbf7;
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: #fcfbf7;
+}
+
+.navbar-inverse .navbar-brand  {
+  color: #fcfbf7;
+}
+
+.navbar-inverse .navbar-toggle span .icone-bar :active:focus {
+  color: white;
+  box-shadow: none;
+  border-color: white;
+  background-color: white;
+}
+
+.btn-primary {
+  background-image: none;
+  border-color: #EBF7FD;
+  background-color: #1FAB89;
+  color: white;
+}
+
+.btn-primary:active {
+  background: white;
+}
