@@ -155,22 +155,62 @@ button#start-login-button {
 h1#show-trek-title{
   font-size: 2em;
   font-weight: 900;
+  margin-bottom: -2%;
 }
 
 h2#show-trek-nick-name{
   font-size: 1em;
   font-weight: 900;
   text-align: left;
+  margin-left: 10%;
+  margin-bottom: -3%;
 }
 
 h3#show-trek-address{
   font-size: 1em;
   font-weight: 900;
   text-align: left;
+  margin-left: 10%;
+  margin-bottom: -3%;
 }
 
-h4#show-trek-created-at{
+h3#show-trek-created-at{
   font-size: 1em;
   font-weight: 900;
   text-align: left;
+  margin-left: 10%;
+  margin-bottom: 5%;
+}
+
+h3#show-trek-rating{
+  font-size: 1em;
+  font-weight: 900;
+  text-align: left;
+  margin-left: 10%;
+  margin-bottom: 5%;
+}
+
+div#trek-not-rated{
+  text-align: left;
+  margin-left: 10%;
+}
+
+h3#show-sound-trek-description{
+  text-align: left;
+  margin-left: 10%;
+}
+
+div#show-sound-trek-desc-text{
+  text-align: left;
+  margin-left: 10%;
+}
+
+div#edit-soundtreks{
+  text-align: left;
+  margin-left: 10%;
+}
+
+div#delete-soundtreks{
+  text-align: left;
+  margin-left: 10%;
 }

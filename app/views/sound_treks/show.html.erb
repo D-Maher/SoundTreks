@@ -1,7 +1,7 @@
 <h1 id="show-trek-title" class="show-title show-data"><%= @sound_trek.title %></h1>
 <h2 id="show-trek-nick-name" class="show-nickname show-data">Created by <%= @sound_trek.trekker.nick_name %></h2>
 <h3 id="show-trek-address" class="show-address show-data">Dropped at <%= @sound_trek.address %></h3>
-<h4 id="show-trek-created-at" class="show-date show-data">Created on <%= @sound_trek.created_at.strftime("%-m/%-d/%Y") %></h4>
+<h3 id="show-trek-created-at" class="show-date show-data">Created on <%= @sound_trek.created_at.strftime("%-m/%-d/%Y") %></h3>
 
 <div class="playlist show-data"
   <div class="playlist-show">
@@ -12,9 +12,9 @@
 <div class="show-soundtrek-flash-message"><%= flash[:no_access_delete] %></div><br>
 <div class="show-soundtrek-flash-message"><%= flash[:no_access_edit] %></div><br>
 
-<h3>Ratings</h3>
+<h3 id="show-trek-rating">Ratings</h3>
   <% if @sound_trek.num_of_ratings == 0 %>
-    <div>This SoundTrek has not been rated yet.</div>
+    <div id="trek-not-rated">This SoundTrek has not been rated yet.</div>
   <% else %>
     <div><%= @sound_trek.average_rating %> stars<br>
     <%= @sound_trek.num_of_ratings %> ratings</div>
@@ -26,6 +26,9 @@
   <div class="show-soundtrek-flash-message"><%= flash[:update_rating] %></div><br>
   <div class="show-soundtrek-flash-message"><%= flash[:creator_rating] %></div><br>
 
+  <h3 id="show-sound-trek-description">Description</h3>
+  <div id="show-sound-trek-desc-text"><%= @sound_trek.description %></div><br>
+
   <% if !rated_by_current_user?(@sound_trek) && !sound_trek_creator? %>
     <h4>Rate This SoundTrek</h4>
     <%= form_for @rating, url: sound_trek_ratings_path(@sound_trek) do |f| %>
@@ -34,7 +37,7 @@
     <% end %>
   <% elsif rated_by_current_user?(@sound_trek) && !sound_trek_creator? %>
     <p>You have given this SoundTrek a rating of <%= @sound_trek.ratings.find_by(trekker_id: current_user.id).stars %> stars.</p><br>
-    <p>Change your rating?</p>
+    <p>Update Your Rating</p>
     <%= form_for @rating, url: sound_trek_rating_path(@sound_trek), method: :put do |f| %>
     <p><%= f.select :stars, options_for_select([['1 star', 1.00], ['2 stars', 2.00], ['3 stars', 3.00], ['4 stars', 4.00], ['5 stars', 5.00]]), class: 'form-control'%></p><br>
     <%= f.submit "Update Rating", class: 'form-control' %>
@@ -42,14 +45,12 @@
   <% end %>
 </div><br>
 
-<h3 id="show-sound-trek-description">Description</h3>
-  <div><%= @sound_trek.description %></div><br>
-
-
 <% if sound_trek_owner?(@sound_trek) %>
-  <div id="edit-delete-soundtreks">
+  <div id="edit-soundtreks">
       <%= link_to "Edit", edit_sound_trek_path(@sound_trek.id) %><br>
-      <%= link_to 'Delete', sound_trek_path(@sound_trek.id),
+  </div>
+  <div id="delete-soundtreks">
+    <%= link_to 'Delete', sound_trek_path(@sound_trek.id),
                             method: :delete,
                             data: { confirm: 'Are you sure?' } %>
   </div>
