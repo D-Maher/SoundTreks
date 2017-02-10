@@ -235,3 +235,8 @@ div#edit-delete-buttons{
   display: flex;
   justify-content: center;
 }
+
+div#rate-soundtrek{
+  margin-left: 10%;
+  text-align: left;
+}

@@ -34,7 +34,6 @@
     <%= @sound_trek.num_of_ratings %> ratings</div>
   <% end %><br>
 
-<div id="rate-soundtrek">
   <div class="show-soundtrek-flash-message"><%= flash[:rating_notice] %></div><br>
 
   <div class="show-soundtrek-flash-message"><%= flash[:update_rating] %></div><br>
@@ -43,6 +42,7 @@
   <h3 id="show-sound-trek-description">Description</h3>
   <div id="show-sound-trek-desc-text"><%= @sound_trek.description %></div><br>
 
+<div id="rate-soundtrek">
   <% if !rated_by_current_user?(@sound_trek) && !sound_trek_creator? %>
     <h4>Rate This SoundTrek</h4>
     <%= form_for @rating, url: sound_trek_ratings_path(@sound_trek) do |f| %>
