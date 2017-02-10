@@ -236,7 +236,7 @@ div#edit-delete-buttons{
   justify-content: center;
 }
 
-div#rate-soundtrek{
+div#rate-soundtrek, h4 form{{
   margin-left: 10%;
   text-align: left;
 }
