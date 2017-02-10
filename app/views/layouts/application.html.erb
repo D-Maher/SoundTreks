@@ -46,17 +46,14 @@
 
           <ul class="nav navbar-nav navbar-right">
 
-            <% if current_user %>
-
-            <li><%= link_to current_user.nick_name, user_path(current_user.id) %></li>
-            <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
-
+            <% if logged_in? %>
+              <li><%= link_to "Learn More", about_index_path %></li>
+              <li><%= link_to current_user.nick_name, user_path(current_user.id) %></li>
+              <li><%= link_to "Sign Out", sign_out_path, method: :delete %></li>
             <% else %>
+              <li><%= link_to "Log In", "/auth/spotify" %></li>
+            <% end %>
 
-            <li><%= link_to "Learn More", about_index_path %></li>
-            <li><%= link_to "Log In", "/auth/spotify" %></li>
-
-          <% end %>
           </ul>
         </div>
       </div>
