@@ -54,21 +54,19 @@ function locError(error) {
 
 // current position of the user
 function setCurrentPosition(position) {
+  mapCenter = new google.maps.LatLng(
+    position.coords.latitude,
+    position.coords.longitude
+  );
+  map.panTo(mapCenter);
   currentPositionMarker = new google.maps.Marker({
     map: map,
-    position: new google.maps.LatLng(
-        position.coords.latitude,
-        position.coords.longitude
-    ),
+    position: mapCenter,
     icon: userIcon,
     title: "Current Position",
     zIndex: 9999999
   });
-  map.panTo(new google.maps.LatLng(
-      position.coords.latitude,
-      position.coords.longitude
-  ));
-  userCenter = currentPositionMarker.position;
+  userCenter = mapCenter;
   createUserRadius(map, position);
 }
 
