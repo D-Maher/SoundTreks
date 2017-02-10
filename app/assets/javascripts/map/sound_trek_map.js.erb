@@ -67,7 +67,6 @@ function setCurrentPosition(position) {
     zIndex: 9999999
   });
   userCenter = mapCenter;
-  createUserRadius(map, position);
 }
 
 function enableSoundTrekFunctions(position) {
@@ -106,6 +105,7 @@ function setMarkerPosition(marker, position) {
 
 function placeUserAndSoundTrekMarkers(position) {
   setMarkerPosition(currentPositionMarker, position);
+  createUserRadius(map, position);
   getSoundTreks(map, position);
 }
 
